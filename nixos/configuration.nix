@@ -56,7 +56,6 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  #programs.dconf.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
@@ -187,20 +186,12 @@
     htop
     git
     tmux
-    ghostty
+    ghostty # Terminal emulator
     wget
     openconnect # Alternative to Cisco Anyconnect
     home-manager
     nixpkgs-fmt
-    #wireguard
-    #wireguard-tools
-    #direnv -> !! enabled using programs.direnv.enable = true; !!
-
-    # Programs
-    discord
-    vlc
-    vscode
-    evince
+    wireguard-tools
   ];
 
   # Configure Bash to execute direnv hook !!DIDN'T SEEM TO WORK, THUS ADDED TO .bashrc MANUALLY!!
