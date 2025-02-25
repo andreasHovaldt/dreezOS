@@ -10,12 +10,17 @@
   # environment.
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    # Util
+    yazi
+    nerdfonts
+    neofetch
+
+    # Programs
     discord
     vlc
     vscode
     evince
     spotify
-    yazi
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -113,51 +118,46 @@
 
   programs.tmux = {
     enable = true;
-    mouse = true; # Default: false
-    clock24 = true; # Default: false
-
-    ### tmux-sensible settings ###
-    escapeTime = 0; # Default: 500
-    historyLimit = 50000; # Default: 2000
-    terminal = "screen-256color"; # Default: screen
-    aggressiveResize = true; # Default: false
-    keyMode = "emacs"; # Default: emacs
-    shortcut = "b"; # Default: b
-    ##############################
-
-
-    plugins = [
-      pkgs.tmuxPlugins.yank
-    ];
+    mouse = true;
+    clock24 = true;
+    terminal = "tmux-256color";
+    historyLimit = 100000;
+    plugins = with pkgs;
+      [
+        tmuxPlugins.sensible
+        tmuxPlugins.better-mouse-mode
+        {
+          plugin = tmuxPlugins.yank;
+          extraConfig = ''
+            # from: https://github.com/tmux-plugins/tmux-yank/issues/172#issuecomment-1827825691
+            set -g set-clipboard on
+            set -g @override_copy_command 'xclip -i -selection clipboard'
+            set -g @yank_selection 'clipboard'
+            set -as terminal-features ',*:clipboard'
+          '';
+        }
+        tmuxPlugins.yank
+      ];
 
     extraConfig = ''
-      # Window splitting
-      bind h split-window -h
-      bind v split-window -v
+      set -g default-terminal "tmux-256color"
+      set -ag terminal-overrides ",xterm-256color:RGB"
 
-      # Window creation
-      unbind "w"
-      unbind "c"
+      bind h split-window -h -c "#{pane_current_path}"
+      bind v split-window -v -c "#{pane_current_path}"
+
+      unbind w
+      unbind c
       bind w new-window
       bind l choose-window
 
-      # Increase tmux messages display duration from 750ms to 4s
-      # from: https://github.com/tmux-plugins/tmux-sensible
-      set -g display-time 4000
+      # Easier reload of config
+      bind r source-file ~/.config/tmux/tmux.conf
 
-      # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s
-      # from: https://github.com/tmux-plugins/tmux-sensible
-      set -g status-interval 5
-
-      # Plugins
-      # from: https://github.com/tmux-plugins/tmux-yank/issues/172#issuecomment-1827825691
-      set -g set-clipboard on
-      set -g @override_copy_command 'xclip -i -selection clipboard'
-      set -g @yank_selection 'clipboard'
-      set -as terminal-features ',*:clipboard'
+      # make Prefix p paste the buffer.
+      unbind p
+      bind p paste-buffer
     '';
-
-
   };
 
   home.sessionVariables = {
