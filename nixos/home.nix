@@ -12,7 +12,6 @@
   home.packages = with pkgs; [
     # Util
     yazi
-    nerdfonts
     neofetch
 
     # Programs
