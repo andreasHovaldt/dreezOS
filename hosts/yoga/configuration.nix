@@ -13,10 +13,11 @@
       ../../config/system/default.nix
     ];
 
-  # Enable system tools
-  basics.enable = false;
+  # Enable system modules
+  basics.enable = true;
   nvidia.enable = true;
-  docker.enable = true;
+  docker.enable = false;
+  network.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -28,50 +29,12 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # NixOS garbage collection
-  nix.gc = {
-    automatic = true; # Enable automatic cleanup
-    persistent = true; # Ensures GC job persists across suspend, reboot, shutdown
-    dates = "05:00:00"; # Queues daily cleanup job at 5 AM
-    options = "--delete-older-than 3d"; # Deletes system generations older than 7 days
-  };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "da_DK.UTF-8";
-    LC_IDENTIFICATION = "da_DK.UTF-8";
-    LC_MEASUREMENT = "da_DK.UTF-8";
-    LC_MONETARY = "da_DK.UTF-8";
-    LC_NAME = "da_DK.UTF-8";
-    LC_NUMERIC = "da_DK.UTF-8";
-    LC_PAPER = "da_DK.UTF-8";
-    LC_TELEPHONE = "da_DK.UTF-8";
-    LC_TIME = "da_DK.UTF-8";
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "dk-latin1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -95,44 +58,23 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dreezy = {
     isNormalUser = true;
     description = "Andreas Højrup";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
+    # shell = pkgs.zsh; # TODO: Research this
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Enable experimental features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # System packages
-    htop
-    git
-    tmux
     ghostty # Terminal emulator
-    wget
-    openconnect # Alternative to Cisco Anyconnect
-    home-manager
     nixpkgs-fmt
-    wireguard-tools
   ];
 
   # Enable direnv

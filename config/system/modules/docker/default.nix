@@ -22,5 +22,10 @@ in
         data-root = "/var/lib/docker";
       };
     };
+
+    # Install dependencies
+    environment.systemPackages = dependencies;
+
   };
+
 }
