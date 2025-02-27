@@ -1,0 +1,2 @@
+- Look into [power management](https://wiki.nixos.org/wiki/Power_Management)
+- 
