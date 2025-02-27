@@ -31,7 +31,7 @@
     automatic = true; # Enable automatic cleanup
     persistent = true; # Ensures GC job persists across suspend, reboot, shutdown
     dates = "05:00:00"; # Queues daily cleanup job at 5 AM
-    options = "--delete-older-than 7d"; # Deletes system generations older than 7 days
+    options = "--delete-older-than 3d"; # Deletes system generations older than 7 days
   };
 
   # Set your time zone.
@@ -159,7 +159,7 @@
   users.users.dreezy = {
     isNormalUser = true;
     description = "Andreas Højrup";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -194,9 +194,19 @@
     wireguard-tools
   ];
 
-  # Configure Bash to execute direnv hook !!DIDN'T SEEM TO WORK, THUS ADDED TO .bashrc MANUALLY!!
-  # https://direnv.net/docs/hook.html
-  #programs.bash.interactiveShellInit = ''eval "$(direnv hook bash)"'';
+  # Enable docker
+  virtualisation.docker = {
+    enable = true;
+
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+
+    daemon.settings = {
+      data-root = "/var/lib/docker";
+    };
+  };
 
   # Enable direnv
   programs.direnv.enable = true;
