@@ -9,7 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
+      #inputs.home-manager.nixosModules.home-manager
     ];
 
   # Bootloader.
@@ -58,24 +58,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # FIXME: This seems to not do anything
-  # programs.dconf = {
-  #   enable = true;
-  #   profiles.user.databases = [
-  #     {
-  #       settings = {
-  #         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-  #           binding = "<Primary><Alt>t";
-  #           command = "ghostty";
-  #           name = "open-terminal";
-  #         };
-  #       };
-  #     }
-  #   ];
-  # };
-
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -165,13 +147,13 @@
     ];
   };
 
-  # Home manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      dreezy = import ./home.nix;
-    };
-  };
+  # # Home manager
+  # home-manager = {
+  #   extraSpecialArgs = { inherit inputs; };
+  #   users = {
+  #     dreezy = import ./home.nix;
+  #   };
+  # };
 
   # Install firefox.
   programs.firefox.enable = true;
