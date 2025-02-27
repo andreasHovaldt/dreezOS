@@ -1,3 +1,5 @@
+The structuring of this NixOS config was inspired by [flatrat24's repo](https://github.com/flatrat24/NixOS/tree/df60fdd58a52ba9b930e00d52fae26cc9e12b7d5)
+
 ## Rebuild system using this flake
 ```shell
 git clone https://github.com/andreasHovaldt/dreezOS.git  
