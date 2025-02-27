@@ -1,2 +1,2 @@
 - Look into [power management](https://wiki.nixos.org/wiki/Power_Management)
-- 
+- Look into [hardware quirks](https://github.com/NixOS/nixos-hardware)

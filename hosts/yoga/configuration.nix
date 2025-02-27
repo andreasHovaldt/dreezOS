@@ -4,11 +4,10 @@
 
 { config, pkgs, ... }: {
 
-  networking.hostName = "yoga-nixos";
+  networking.hostName = "yoga";
 
   imports =
     [
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/system/default.nix
     ];

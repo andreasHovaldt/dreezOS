@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }:
 let
   dependencies = with pkgs; [
+    pkgs.networkmanagerapplet
+
     # VPN pkgs
     openconnect
     wireguard-tools
