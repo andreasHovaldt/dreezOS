@@ -60,6 +60,7 @@
     ];
 
     extraConfig = {
+      init.defaultBrach = "main";
       core.editor = "code";
       pull.rebase = true;
     };
