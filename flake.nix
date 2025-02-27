@@ -31,7 +31,7 @@
     {
 
       nixosConfigurations = {
-        dreezOS = nixpkgs.lib.nixosSystem {
+        yoga = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs system; };
 
           modules = [
