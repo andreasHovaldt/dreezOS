@@ -13,7 +13,7 @@ in
     gnome.enable = lib.mkEnableOption "enable gnome";
   };
 
-  config = lib.mkIf config.sample-gnome {
+  config = lib.mkIf config.gnome {
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
