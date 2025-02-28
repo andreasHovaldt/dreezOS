@@ -12,28 +12,26 @@
       ../../config/system/default.nix
     ];
 
-  # Enable system modules
-  basics.enable = true;
-  nvidia.enable = true;
-  docker.enable = false;
-  network.enable = true;
+  # Bootloader modules - Choose one
+  grub.enable = false;
+  systemd-boot.enable = true;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # System basics
+  basics.enable = true;
+
+  # Desktop environment
+  gnome.enable = true;
+
+  # System modules
+  nvidia.enable = true;
+  docker.enable = true;
+  network.enable = true;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
