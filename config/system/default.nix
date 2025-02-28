@@ -7,5 +7,7 @@
     ./modules/grub
     ./modules/systemd-boot
     ./modules/gnome
+    ./modules/pipewire
+    ./modules/power
   ];
 }
