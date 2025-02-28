@@ -23,6 +23,8 @@ in
       };
     };
 
+    users.users.dreezy.extraGroups = [ "docker" ];
+
     # Install dependencies
     environment.systemPackages = dependencies;
 
