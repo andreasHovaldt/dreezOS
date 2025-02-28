@@ -15,6 +15,7 @@
     neofetch
 
     # Programs
+    ghostty
     discord
     vlc
     vscode
