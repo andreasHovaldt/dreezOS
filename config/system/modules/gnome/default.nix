@@ -10,10 +10,10 @@ let
 in
 {
   options = {
-    sample-module.enable = lib.mkEnableOption "enable sample-module";
+    gnome.enable = lib.mkEnableOption "enable gnome";
   };
 
-  config = lib.mkIf config.sample-module.enable {
+  config = lib.mkIf config.sample-gnome {
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
