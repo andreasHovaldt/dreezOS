@@ -22,6 +22,7 @@
   git.enable = true;
   ghostty.enable = true;
   tmux.enable = true;
+  firefox.enable = true;
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
