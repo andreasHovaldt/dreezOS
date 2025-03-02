@@ -1,3 +1,12 @@
+##################################################################
+# UNCOMMENT: Has been commented out in ../modules/default.nix    #
+#                                                                #
+# ALSO: insert xremap-flake.url = "github:xremap/nix-flake";     #
+#       in flake.nix under inputs                                #
+#                                                                #
+# AND: add xremap.enable = true; in hosts/yoga/configuration.nix #
+##################################################################
+
 { pkgs, lib, config, inputs, ... }:
 let
   dependencies = with pkgs; [
@@ -9,6 +18,10 @@ let
   ];
 in
 {
+  imports = [
+    inputs.xremap-flake.nixosModules.default
+  ];
+
   options = {
     xremap.enable = lib.mkEnableOption "enable xremap";
   };
@@ -16,36 +29,29 @@ in
   config = lib.mkIf config.xremap.enable {
     ## -- Write your configuration here -- ##
 
-    imports = [
-      inputs.xremap-flake.nixosModules.default
-    ];
-
     services.xremap = {
       enable = true;
       withGnome = true;
       userName = "dreezy";
       config = {
-        keymap = {
+        keymap = [
+          {
 
-          name = "Main remaps";
-          remap = {
-            C_ALT = {
-              remap = {
-                f = {
-                  launch = [ "ghostty" ];
-                };
+            name = "general keybindings";
+            remap = {
+              super-g = {
+                launch = [ "${lib.getExe pkgs.firefox}" ];
               };
             };
-          };
-
-        }
           }
-          }
-
-
-          ## -- End of configuration -- ##
-
-          # Install dependencies
-          environment.systemPackages = dependencies;
+        ];
       };
-    }
+    };
+
+
+    ## -- End of configuration -- ##
+
+    # Install dependencies
+    environment.systemPackages = dependencies;
+  };
+}
