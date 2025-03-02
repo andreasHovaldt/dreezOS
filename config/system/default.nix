@@ -9,5 +9,6 @@
     ./modules/gnome
     ./modules/pipewire
     ./modules/power
+    ./modules/gnupg
   ];
 }
