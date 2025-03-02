@@ -1,11 +1,9 @@
 { pkgs, lib, config, ... }:
 let
   dependencies = with pkgs; [
-    ## -- Write pkgs dependencies here -- ##
-
-
-
-    ## -- End of dependencies -- ##
+    # sddm-sugar-dark dependencies
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 in
 {
@@ -19,9 +17,12 @@ in
     services.xserver.enable = true;
 
     # Enable the sddm display manager.
-    services.displayManager.sddm.enable = true;
-    services.displayManager.sddm.wayland.enable = true;
-    services.displayManager.sddm.settings.General.DisplayServer = "wayland";
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      settings.General.DisplayServer = "wayland";
+      theme = "${import ./themes/sddm-sugar-dark.nix { inherit pkgs; }}";
+    };
 
     # Install dependencies
     environment.systemPackages = dependencies;
