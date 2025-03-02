@@ -34,7 +34,7 @@
   pipewire.enable = true;
   bluetooth.enable = true;
   nvidia.enable = true;
-  docker.enable = true;
+  docker.enable = false;
   gnupg.enable = false;
   services.printing.enable = true;
   programs.firefox.enable = true;
