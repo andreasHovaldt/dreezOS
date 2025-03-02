@@ -10,22 +10,30 @@ let
 in
 {
   options = {
-    firefox.enable = lib.mkEnableOption "enable sample-module";
+    firefox.enable = lib.mkEnableOption "enable firefox";
   };
 
-  config = lib.mkIf config.sample-module.enable {
+  config = lib.mkIf config.firefox.enable {
     ## -- Write your configuration here -- ##
+
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "lastpass-password-manager"
+      ];
+    };
 
     programs.firefox = {
       enable = true;
 
       profiles.dreezy = {
         extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-          lastpass-password-manager
+          #lastpass-password-manager
           ublock-origin
           darkreader
           return-youtube-dislikes
           youtube-nonstop
+          privacy-badger
         ];
       };
     };
