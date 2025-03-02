@@ -17,7 +17,7 @@ in
 
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = true; # Whether to power up the default Bluetooth controller on boot.
+      powerOnBoot = false; # Whether to power up the default Bluetooth controller on boot.
     };
 
     # Install dependencies
