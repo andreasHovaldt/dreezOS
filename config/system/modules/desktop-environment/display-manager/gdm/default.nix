@@ -1,12 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  dependencies = with pkgs; [
-    ## -- Write pkgs dependencies here -- ##
-
-
-
-    ## -- End of dependencies -- ##
-  ];
+  dependencies = with pkgs; [ ];
 in
 {
   options = {
@@ -14,11 +8,12 @@ in
   };
 
   config = lib.mkIf config.gdm.enable {
-    ## -- Write your configuration here -- ##
 
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
 
-
-    ## -- End of configuration -- ##
+    # Enable the gdm display manager.
+    services.xserver.displayManager.gdm.enable = true;
 
     # Install dependencies
     environment.systemPackages = dependencies;

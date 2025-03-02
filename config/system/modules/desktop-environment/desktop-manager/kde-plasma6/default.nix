@@ -4,16 +4,16 @@ let
 in
 {
   options = {
-    gnome.enable = lib.mkEnableOption "enable gnome";
+    kde-plasma6.enable = lib.mkEnableOption "enable kde-plasma6";
   };
 
-  config = lib.mkIf config.gnome.enable {
+  config = lib.mkIf config.kde-plasma6.enable {
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 
-    # Enable the gnome desktop manager.
-    services.xserver.desktopManager.gnome.enable = true;
+    # Enable the KDE Plasma 6 desktop manager.
+    services.desktopManager.plasma6.enable = true;
 
     # Install dependencies
     environment.systemPackages = dependencies;

@@ -19,8 +19,14 @@
   # System basics
   basics.enable = true;
 
-  # Desktop environment
-  gdm-gnome.enable = true;
+  # Display manager
+  gdm.enable = false;
+  sddm.enable = true;
+
+  # Desktop manager
+  gnome.enable = false;
+  kde-plasma6.enable = true;
+
 
   # System modules
   power.enable = true;

@@ -13,12 +13,15 @@ in
     sddm.enable = lib.mkEnableOption "enable sample-module";
   };
 
-  config = lib.mkIf config.sample-module.enable {
-    ## -- Write your configuration here -- ##
+  config = lib.mkIf config.sddm.enable {
 
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
 
-
-    ## -- End of configuration -- ##
+    # Enable the sddm display manager.
+    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.wayland.enable = true;
+    services.displayManager.sddm.settings.General.DisplayServer = "wayland";
 
     # Install dependencies
     environment.systemPackages = dependencies;
