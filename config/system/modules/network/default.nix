@@ -1,0 +1,39 @@
+{ pkgs, lib, config, ... }:
+let
+  dependencies = with pkgs; [
+    pkgs.networkmanagerapplet
+
+    # VPN pkgs # TODO: Maybe move to a separate module
+    openconnect
+    wireguard-tools
+  ];
+in
+{
+  options = {
+    network.enable = lib.mkEnableOption "enable network";
+  };
+
+  config = lib.mkIf config.network.enable {
+
+    # Enable networking
+    networking.networkmanager.enable = true;
+
+    # Enable mtr ping and traceroute
+    programs.mtr.enable = true;
+
+    # Enables wireless support via wpa_supplicant.
+    # networking.wireless.enable = true;
+
+    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
+
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
+
+    # Install dependencies
+    environment.systemPackages = dependencies;
+  };
+}
