@@ -21,7 +21,7 @@ in
         useOSProber = true;
         efiSupport = true;
         default = "saved"; # Boot last selected entry
-        configurationLimit = 10;
+        configurationLimit = 50;
         device = "nodev";
       };
       efi.canTouchEfiVariables = true;
