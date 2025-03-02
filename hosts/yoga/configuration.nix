@@ -20,7 +20,7 @@
   basics.enable = true;
 
   # Desktop environment
-  gnome.enable = true;
+  gdm-gnome.enable = true;
 
   # System modules
   power.enable = true;

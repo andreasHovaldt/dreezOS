@@ -4,10 +4,10 @@ let
 in
 {
   options = {
-    gnome.enable = lib.mkEnableOption "enable gnome";
+    gdm-gnome.enable = lib.mkEnableOption "enable gdm-gnome";
   };
 
-  config = lib.mkIf config.gnome.enable {
+  config = lib.mkIf config.gdm-gnome.enable {
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
