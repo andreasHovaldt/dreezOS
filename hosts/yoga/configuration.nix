@@ -32,6 +32,7 @@
   power.enable = true;
   network.enable = true;
   pipewire.enable = true;
+  bluetooth.enable = true;
   nvidia.enable = true;
   docker.enable = true;
   gnupg.enable = false;
