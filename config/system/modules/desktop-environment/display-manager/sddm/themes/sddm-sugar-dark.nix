@@ -1,13 +1,13 @@
 { pkgs }:
 
-let
-  imgLink = "https://raw.githubusercontent.com/AngelJumbo/gruvbox-wallpapers/refs/heads/main/wallpapers/irl/road.jpg";
+# let
+#   imgLink = "https://raw.githubusercontent.com/AngelJumbo/gruvbox-wallpapers/refs/heads/main/wallpapers/irl/road.jpg";
 
-  image = pkgs.fetchurl {
-    url = imgLink;
-    sha256 = "1cvancpcy844sz3qshyfkhr3wc47z1jkfmjwb7jhjk1h01qnzcqb";
-  };
-in
+#   image = pkgs.fetchurl {
+#     url = imgLink;
+#     sha256 = "1cvancpcy844sz3qshyfkhr3wc47z1jkfmjwb7jhjk1h01qnzcqb";
+#   };
+# in
 pkgs.stdenv.mkDerivation {
 
   name = "sddm-sugar-dark";
