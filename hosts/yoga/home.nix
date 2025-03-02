@@ -13,7 +13,7 @@
   };
 
   # Import Home Manager modules.
-  import = [
+  imports = [
     ../../config/home/default.nix
   ];
 
