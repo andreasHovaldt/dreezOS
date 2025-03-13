@@ -10,6 +10,7 @@
     [
       ./hardware-configuration.nix
       ../../config/system/default.nix
+      ./cachix.nix
     ];
 
   # Bootloader modules - Choose one
@@ -20,12 +21,12 @@
   basics.enable = true;
 
   # Display manager
-  gdm.enable = false;
-  sddm.enable = true;
+  gdm.enable = true;
+  sddm.enable = false;
 
   # Desktop manager
-  gnome.enable = false;
-  kde-plasma6.enable = true;
+  gnome.enable = true;
+  kde-plasma6.enable = false;
 
 
   # System modules
@@ -51,7 +52,14 @@
   # System packages
   environment.systemPackages = with pkgs; [
     nixpkgs-fmt
+    cachix
   ];
+
+  # Swap
+  swapDevices = [{
+    device = "/swapfile";
+    size = 16 * 1024;
+  }];
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "24.11";
