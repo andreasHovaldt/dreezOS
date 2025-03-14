@@ -48,11 +48,6 @@
     # shell = pkgs.zsh; # TODO: Research this
   };
 
-  # System packages
-  environment.systemPackages = with pkgs; [
-    nixpkgs-fmt
-  ];
-
   # Swap
   swapDevices = [{
     device = "/swapfile";

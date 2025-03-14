@@ -5,6 +5,7 @@ let
     git
     htop
     tmux
+    nixpkgs-fmt
   ];
 in
 {
