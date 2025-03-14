@@ -11,6 +11,7 @@
     ./modules/gnupg
     #./modules/xremap
     ./modules/bluetooth
+    ./modules/cachix
 
     ./modules/desktop-environment/gdm-gnome
     ./modules/desktop-environment/desktop-manager/gnome

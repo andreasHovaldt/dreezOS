@@ -10,7 +10,6 @@
     [
       ./hardware-configuration.nix
       ../../config/system/default.nix
-      ./cachix.nix
     ];
 
   # Bootloader modules - Choose one
@@ -52,7 +51,6 @@
   # System packages
   environment.systemPackages = with pkgs; [
     nixpkgs-fmt
-    cachix
   ];
 
   # Swap
