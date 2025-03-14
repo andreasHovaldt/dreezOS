@@ -11,6 +11,10 @@ let
 
     # Git
     gsta = "git status";
+
+    # nixos-rebuild from flake
+    nr-flake = "nixos-rebuild switch --use-remote-sudo --flake ./#$(hostname)";
+
   };
 in
 {
