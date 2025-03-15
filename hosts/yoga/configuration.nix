@@ -19,9 +19,12 @@
   # System basics
   basics.enable = true;
 
+  # Desktop environment
+  sddm.enable = false;
+  hyprland.enable = false;
+
   # Display manager
   gdm.enable = true;
-  sddm.enable = false;
 
   # Desktop manager
   gnome.enable = true;

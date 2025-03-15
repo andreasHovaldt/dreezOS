@@ -1,0 +1,49 @@
+{ pkgs, lib, config, inputs, ... }:
+let
+  waybar-experimental = pkgs.waybar.overrideAttrs (oldAttrs: {
+    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+  });
+
+  dependencies = with pkgs; [
+    ### These might fit better in the home-manager module
+    kitty # Apparently needed for the default hyprland config?
+    # wezterm
+    rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
+    waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
+    dunst # or mako | Notification daemon
+    libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
+
+    # Wallpaper daemon
+    swww # hyprpaper, swaybg, wpaperd, mpvpaper
+
+  ]
+  ++ (if (config ? nvidia && config.nvidia.enable == true) then [ egl-wayland ] else [ ]); # https://wiki.hyprland.org/Nvidia/
+in
+{
+  options = {
+    hyprland.enable = lib.mkEnableOption "enable hyprland";
+  };
+
+  config = lib.mkIf config.hyprland.enable {
+
+    # https://wiki.nixos.org/wiki/Hyprland
+    # https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
+      withUWSM = true;
+      xwayland.enable = true;
+    };
+
+    environment.sessionVariables = {
+      # If your cursor becomes invisible
+      # WLR_NO_HARDWARE_CURSORS = "1";
+
+      # Hint electron apps to use wayland
+      NIXOS_OZONE_WL = "1";
+    };
+
+    # Install dependencies
+    environment.systemPackages = dependencies;
+  };
+}
