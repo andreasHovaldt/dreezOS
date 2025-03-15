@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }:
 let
-  dependencies = with pkgs; [ ];
+  dependencies = with pkgs; [
+    pavucontrol
+  ];
 in
 {
   options = {

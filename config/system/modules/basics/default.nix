@@ -57,10 +57,19 @@ in
       dates = "05:00:00"; # Queues daily cleanup job at 5 AM
       options = "--delete-older-than 3d"; # Deletes system generations older than 7 days
     };
+    nix.settings.auto-optimise-store = true;
 
     # Enable experimental features
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+      xdgOpenUsePortal = true;
+    };
 
 
     # Install dependencies

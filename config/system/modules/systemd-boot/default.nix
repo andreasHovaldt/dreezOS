@@ -1,12 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  dependencies = with pkgs; [
-    ## -- Write pkgs dependencies here -- ##
-
-
-
-    ## -- End of dependencies -- ##
-  ];
+  dependencies = with pkgs; [ ];
 in
 {
   options = {

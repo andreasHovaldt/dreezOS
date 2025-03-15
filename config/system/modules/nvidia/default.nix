@@ -12,6 +12,11 @@ in
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    };
+
     # NVIDIA kernel modules at boot
     hardware.nvidia = {
       # Modesetting is required.
