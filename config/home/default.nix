@@ -5,5 +5,6 @@
     ./modules/ghostty
     ./modules/tmux
     ./modules/firefox
+    ./modules/hyprland
   ];
 }
