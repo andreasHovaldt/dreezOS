@@ -17,7 +17,13 @@ let
     swww # hyprpaper, swaybg, wpaperd, mpvpaper
 
   ]
-  ++ (if (config ? nvidia && config.nvidia.enable == true) then [ egl-wayland ] else [ ]); # https://wiki.hyprland.org/Nvidia/
+  # https://wiki.hyprland.org/Nvidia/
+  ++ (if (config ? nvidia && config.nvidia.enable == true) then [
+    egl-wayland
+    wayland-utils
+    kdePackages.wayland-protocols
+  ] else [ ]);
+
 in
 {
   options = {
@@ -31,6 +37,7 @@ in
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
+      portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
       #withUWSM = true;
       xwayland.enable = true;
     };
