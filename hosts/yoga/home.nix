@@ -22,6 +22,7 @@
   git.enable = true;
   ghostty.enable = true;
   tmux.enable = true;
+  hyprland.enable = false;
   firefox.enable = false; # Instead, use the system Firefox and login
   programs.direnv = {
     enable = true;

@@ -13,8 +13,8 @@
     ];
 
   # Bootloader modules - Choose one
-  grub.enable = true;
-  systemd-boot.enable = false;
+  grub.enable = false;
+  systemd-boot.enable = true;
 
   # System basics
   basics.enable = true;

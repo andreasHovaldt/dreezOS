@@ -31,9 +31,22 @@ in
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
-      withUWSM = true;
+      #withUWSM = true;
       xwayland.enable = true;
     };
+
+
+    # https://mynixos.com/nixpkgs/option/programs.uwsm.waylandCompositors
+    # programs.uwsm = {
+    #   enable = true;
+    #   waylandCompositors = {
+    #     hyprland = {
+    #       prettyName = "Hyprland";
+    #       comment = "Hyprland compositor managed by UWSM";
+    #       binPath = "/run/current-system/sw/bin/Hyprland";
+    #     };
+    #   };
+    # };
 
     environment.sessionVariables = {
       # If your cursor becomes invisible

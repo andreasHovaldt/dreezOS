@@ -17,6 +17,8 @@ in
   config = lib.mkIf cfg.enable {
     ## -- Write your configuration here -- ##
 
+    # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
+    wayland.windowManager.hyprland.systemd.enable = false;
 
 
     ## -- End of configuration -- ##
