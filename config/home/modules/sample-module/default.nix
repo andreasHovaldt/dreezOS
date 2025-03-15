@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }:
 let
+  cfg = config.sample-module;
   dependencies = with pkgs; [
     ## -- Write pkgs dependencies here -- ##
 
@@ -13,7 +14,7 @@ in
     sample-module.enable = lib.mkEnableOption "enable sample-module";
   };
 
-  config = lib.mkIf config.sample-module.enable {
+  config = lib.mkIf cfg.enable {
     ## -- Write your configuration here -- ##
 
 

@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }:
 let
+  cfg = config.ghostty;
   dependencies = with pkgs; [
     ghostty
   ];
@@ -9,7 +10,7 @@ in
     ghostty.enable = lib.mkEnableOption "enable ghostty";
   };
 
-  config = lib.mkIf config.ghostty.enable {
+  config = lib.mkIf cfg.enable {
 
     programs.ghostty = {
       enable = true;

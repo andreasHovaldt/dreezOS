@@ -1,5 +1,6 @@
 { pkgs, lib, config, inputs, ... }:
 let
+  cfg = config.firefox;
   dependencies = with pkgs; [
     ## -- Write pkgs dependencies here -- ##
 
@@ -13,7 +14,7 @@ in
     firefox.enable = lib.mkEnableOption "enable firefox";
   };
 
-  config = lib.mkIf config.firefox.enable {
+  config = lib.mkIf cfg.enable {
     ## -- Write your configuration here -- ##
 
     nixpkgs.config = {

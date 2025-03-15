@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }:
 let
+  cfg = config.bash;
   dependencies = with pkgs; [ ];
   aliases = {
     # Wireguard
@@ -22,7 +23,7 @@ in
     bash.enable = lib.mkEnableOption "enable bash";
   };
 
-  config = lib.mkIf config.bash.enable {
+  config = lib.mkIf cfg.enable {
     programs.bash = {
       enable = true;
       shellAliases = aliases;

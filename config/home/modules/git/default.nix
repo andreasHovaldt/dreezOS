@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }:
 let
+  cfg = config.git;
   dependencies = with pkgs; [ ];
 in
 {
@@ -7,7 +8,7 @@ in
     git.enable = lib.mkEnableOption "enable git";
   };
 
-  config = lib.mkIf config.git.enable {
+  config = lib.mkIf cfg.enable {
 
     programs.git = {
       enable = true;
