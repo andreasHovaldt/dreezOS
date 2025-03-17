@@ -8,13 +8,13 @@ let
     ### These might fit better in the home-manager module
     kitty # Apparently needed for the default hyprland config?
     # wezterm
-    rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
+    #rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
     waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
-    dunst # or mako | Notification daemon
-    libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
+    #dunst # or mako | Notification daemon
+    #libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
 
     # Wallpaper daemon
-    swww # hyprpaper, swaybg, wpaperd, mpvpaper
+    #swww # hyprpaper, swaybg, wpaperd, mpvpaper
 
   ]
   # https://wiki.hyprland.org/Nvidia/

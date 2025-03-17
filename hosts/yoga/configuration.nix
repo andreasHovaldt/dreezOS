@@ -20,11 +20,11 @@
   basics.enable = true;
 
   # Desktop environment
-  sddm.enable = false;
-  hyprland.enable = false;
+  sddm.enable = true;
+  hyprland.enable = true;
 
   # Display manager
-  gdm.enable = true;
+  gdm.enable = false;
 
   # Desktop manager
   gnome.enable = true;
@@ -47,7 +47,7 @@
   users.users.dreezy = {
     isNormalUser = true;
     description = "Andreas Højrup";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "seat" ];
     # shell = pkgs.zsh; # TODO: Research this
   };
 

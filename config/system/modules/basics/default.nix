@@ -48,7 +48,13 @@ in
     # Enable OpenGL
     hardware.graphics = {
       enable = true;
+      enable32Bit = true;
     };
+
+    # Enable seatd as Seat Manager
+    # This is required for Hyprland to work properly
+    # remember to add your user to the "seat" group
+    services.seatd.enable = true;
 
     # Garbage collection
     nix.gc = {
