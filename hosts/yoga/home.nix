@@ -24,6 +24,7 @@
   tmux.enable = true;
   hyprland.enable = true;
   swww.enable = true;
+  ssh.enable = true;
   firefox.enable = false; # Instead, use the system Firefox and login
   programs.direnv = {
     enable = true;

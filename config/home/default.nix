@@ -7,5 +7,6 @@
     ./modules/firefox
     ./modules/hyprland
     ./modules/swww
+    ./modules/ssh
   ];
 }
