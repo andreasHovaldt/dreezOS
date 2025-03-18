@@ -35,6 +35,14 @@ in
     };
 
     # Start user-based systemd service
+
+    # NOTES:
+    # - systemctl --user status wallpaper-switcher
+    # - Restarts every 1min 30sec
+    # - Logs say "scheduled restart job, restart counter xx"
+    # - TODO add some kind of printing to the logs
+    #   - Probably add in the 'wp-switcher.sh' program
+
     systemd.user.services.wallpaper-switcher = {
       Unit = {
         Description = "Random Wallpaper Setter";
@@ -42,9 +50,11 @@ in
         PartOf = [ "graphical-session.target" ]; # Only runs while graphical session runs
       };
       Service = {
-        ExecStart = "${pkgs.runtimeShell} -c '${wallpaperScript} ${wallpaperDir}'"; # Runs the wp-switcher script
+        #ExecStart = "${pkgs.runtimeShell} -c '${wallpaperScript} ${wallpaperDir}'"; # Runs the wp-switcher script
+        ExecStart = "${pkgs.bash} -c '${wallpaperScript} ${wallpaperDir}'";
         Restart = "always";
         ExecStartPre = "-${pkgs.swww}/bin/swww-daemon"; # Ensures swww is initialized
+        #EnvironmentPath = "/usr/bin:/bin"; # Ensure common paths are available
       };
       Install = {
         WantedBy = [ "default.target" ]; # Ensures the service starts automatically when you log in

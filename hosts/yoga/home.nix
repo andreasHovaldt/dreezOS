@@ -23,7 +23,7 @@
   ghostty.enable = true;
   tmux.enable = true;
   hyprland.enable = true;
-  swww.enable = true;
+  swww.enable = false;
   ssh.enable = true;
   firefox.enable = false; # Instead, use the system Firefox and login
   programs.direnv = {
