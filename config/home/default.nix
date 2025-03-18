@@ -6,5 +6,6 @@
     ./modules/tmux
     ./modules/firefox
     ./modules/hyprland
+    ./modules/swww
   ];
 }

@@ -52,9 +52,9 @@ in
     };
 
     # Enable seatd as Seat Manager
-    # This is required for Hyprland to work properly
+    # This is supposedly required for Hyprland to work properly
     # remember to add your user to the "seat" group
-    services.seatd.enable = true;
+    #services.seatd.enable = true;
 
     # Garbage collection
     nix.gc = {
@@ -69,6 +69,7 @@ in
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
+    # Desktop portals handle interactions between desktop programs
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [

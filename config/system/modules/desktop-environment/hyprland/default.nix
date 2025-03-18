@@ -8,17 +8,20 @@ let
     ### These might fit better in the home-manager module
     kitty # Apparently needed for the default hyprland config?
     # wezterm
-    #rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
-    waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
-    #dunst # or mako | Notification daemon
-    #libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
+    rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
+    #waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
+    waybar
+    dunst # or mako | Notification daemon
+    libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
 
     # Wallpaper daemon
     #swww # hyprpaper, swaybg, wpaperd, mpvpaper
 
+    fastfetch
+
   ]
   # https://wiki.hyprland.org/Nvidia/
-  ++ (if (config ? nvidia && config.nvidia.enable == true) then [
+  ++ (if (config.nvidia.enable or false) then [
     egl-wayland
     wayland-utils
     kdePackages.wayland-protocols
@@ -36,10 +39,12 @@ in
     # https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
-      portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
-      #withUWSM = true;
       xwayland.enable = true;
+      # package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
+      #package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+      #portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+      portalPackage = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".xdg-desktop-portal-hyprland;
+      withUWSM = true;
     };
 
 
