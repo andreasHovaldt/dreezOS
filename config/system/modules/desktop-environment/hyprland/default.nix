@@ -6,19 +6,10 @@ let
 
   dependencies = with pkgs; [
     ### These might fit better in the home-manager module
-    kitty # Apparently needed for the default hyprland config?
-    # wezterm
     rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
-    #waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
-    waybar
+    waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
     dunst # or mako | Notification daemon
     libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
-
-    # Wallpaper daemon
-    #swww # hyprpaper, swaybg, wpaperd, mpvpaper
-
-    fastfetch
-
   ]
   # https://wiki.hyprland.org/Nvidia/
   ++ (if (config.nvidia.enable or false) then [
@@ -40,27 +31,14 @@ in
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
-      # package = inputs.hyprland.packages."${pkgs.system}".hyprland; # NOTE: This might cause issues!
-      #package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-      #portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+      # package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland; # NOTE: This might cause issues!
       portalPackage = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".xdg-desktop-portal-hyprland;
       withUWSM = true;
     };
 
-
-    # https://mynixos.com/nixpkgs/option/programs.uwsm.waylandCompositors
-    # programs.uwsm = {
-    #   enable = true;
-    #   waylandCompositors = {
-    #     hyprland = {
-    #       prettyName = "Hyprland";
-    #       comment = "Hyprland compositor managed by UWSM";
-    #       binPath = "/run/current-system/sw/bin/Hyprland";
-    #     };
-    #   };
-    # };
-
     environment.sessionVariables = {
+      # TODO: Move to home manager module and use home.sessionVariables
+
       # If your cursor becomes invisible
       # WLR_NO_HARDWARE_CURSORS = "1";
 
@@ -72,3 +50,22 @@ in
     environment.systemPackages = dependencies;
   };
 }
+
+
+
+
+
+
+### Im still unsure if this is needed?
+### It seems to work fine without.
+# https://mynixos.com/nixpkgs/option/programs.uwsm.waylandCompositors
+# programs.uwsm = {
+#   enable = true;
+#   waylandCompositors = {
+#     hyprland = {
+#       prettyName = "Hyprland";
+#       comment = "Hyprland compositor managed by UWSM";
+#       binPath = "/run/current-system/sw/bin/Hyprland";
+#     };
+#   };
+# };
