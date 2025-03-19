@@ -1,3 +1,9 @@
+#Host example_name
+#  HostName 192.168.0.1
+#  User example_user
+#  Port 25565
+#  IdentityFile /path/to/key
+
 Host ai-lab1
   HostName ailab-fe01.srv.aau.dk
   User qu30hs@student.aau.dk
@@ -6,33 +12,19 @@ Host ai-lab2
   HostName ailab-fe02.srv.aau.dk
   User qu30hs@student.aau.dk
 
-#Host DMIAI
-#  HostName 40.113.43.245
-#  User ce-7-740
-#  IdentityFile ~/.ssh/DM-i-AI_key
-
-Host morty
-  HostName gs.stauersboel.dk
-  User morten
-
 Host web-server
   HostName wg.dreez.dk
   Port 46692
-  User andreas
-
-Host web-server-local
-  HostName 192.168.0.6
-  User andreas
-
-Host docker-vm-local
-  HostName 192.168.0.5
   User andreas
 
 Host wireguard-server-local
   HostName 192.168.0.3
   User root
 
-Host ucloud
-  HostName ssh.cloud.sdu.dk
-  Port 2153
-  User ucloud
+Host docker-vm-local
+  HostName 192.168.0.5
+  User andreas
+
+Host web-server-local
+  HostName 192.168.0.6
+  User andreas

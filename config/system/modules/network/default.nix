@@ -2,6 +2,7 @@
 let
   dependencies = with pkgs; [
     pkgs.networkmanagerapplet
+    gnome-keyring
 
     # VPN pkgs # TODO: Maybe move to a separate module
     openconnect
@@ -21,19 +22,27 @@ in
     # Enable mtr ping and traceroute
     programs.mtr.enable = true;
 
-    # Enables wireless support via wpa_supplicant.
-    # networking.wireless.enable = true;
-
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
+    # Enable the ssh-agent
+    programs.ssh.startAgent = true;
 
     # Install dependencies
     environment.systemPackages = dependencies;
   };
 }
+
+
+
+
+
+
+# Enables wireless support via wpa_supplicant.
+# networking.wireless.enable = true;
+
+# Enable the OpenSSH daemon.
+# services.openssh.enable = true;
+
+# Open ports in the firewall.
+# networking.firewall.allowedTCPPorts = [ ... ];
+# networking.firewall.allowedUDPPorts = [ ... ];
+# Or disable the firewall altogether.
+# networking.firewall.enable = false;
