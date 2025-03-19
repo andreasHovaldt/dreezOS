@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 let
   cfg = config.ssh;
-  dependencies = with pkgs; [ ];
+  dependencies = with pkgs; [ gnome-keyring ];
 
   sshConfig = "${config.home.homeDirectory}/.config/ssh/config";
 in
