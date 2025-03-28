@@ -8,5 +8,6 @@
     ./modules/hyprland
     ./modules/swww
     ./modules/ssh
+    ./modules/direnv
   ];
 }

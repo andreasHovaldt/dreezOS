@@ -25,13 +25,9 @@
   hyprland.enable = true;
   swww.enable = false;
   ssh.enable = true;
-  firefox.enable = false; # Instead, use the system Firefox and login
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+  direnv.enable = true;
 
-  # Home Manager packages.
+  # Misc Home Manager packages.
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # Util

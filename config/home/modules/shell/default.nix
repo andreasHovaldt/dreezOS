@@ -26,8 +26,8 @@ let
   };
 in
 {
-  options = {
-    shell.enable = lib.mkEnableOption "enable shell config";
+  options.shell = {
+    enable = lib.mkEnableOption "enable shell config";
 
     bash.enable = lib.mkOption {
       type = lib.types.bool;
