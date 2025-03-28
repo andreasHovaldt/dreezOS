@@ -4,7 +4,7 @@
 # Changes the wallpaper to a randomly chosen image in a given directory
 # at a set interval.
 
-DEFAULT_INTERVAL="${SWWW_DEFAULT_INTERVAL:-300}" # Use env variable, default to 300s
+DEFAULT_INTERVAL=30 # Use env variable, default to 300s
 
 if [ $# -lt 1 ] || [ ! -d "$1" ]; then
 	printf "Usage:\n\t\e[1m%s\e[0m \e[4mDIRECTORY\e[0m [\e[4mINTERVAL\e[0m]\n" "$0"
@@ -14,8 +14,8 @@ fi
 
 # See swww-img(1)
 RESIZE_TYPE="crop"
-export SWWW_TRANSITION_FPS="${SWWW_TRANSITION_FPS:-60}"
-export SWWW_TRANSITION_STEP="${SWWW_TRANSITION_STEP:-2}"
+export SWWW_TRANSITION_FPS="${SWWW_TRANSITION_FPS:-90}"
+export SWWW_TRANSITION_STEP="${SWWW_TRANSITION_STEP:-5}"
 
 while true; do
 	find "$1" -type f \
