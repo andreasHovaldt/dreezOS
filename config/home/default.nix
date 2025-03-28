@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./modules/bash
+    ./modules/shell
     ./modules/git
     ./modules/ghostty
     ./modules/tmux

@@ -18,7 +18,7 @@
   ];
 
   # Enable Home Manager modules.
-  bash.enable = true;
+  shell.enable = true;
   git.enable = true;
   ghostty.enable = true;
   tmux.enable = true;

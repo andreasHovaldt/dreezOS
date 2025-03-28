@@ -46,6 +46,9 @@ in
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
+    # Enable zsh
+    programs.zsh.enable = true;
+
     # Enable OpenGL
     hardware.graphics = {
       enable = true;

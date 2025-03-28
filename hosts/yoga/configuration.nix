@@ -48,7 +48,7 @@
     isNormalUser = true;
     description = "Andreas Højrup";
     extraGroups = [ "networkmanager" "wheel" "seat" ];
-    # shell = pkgs.zsh; # TODO: Research this
+    shell = pkgs.zsh;
   };
 
   # Swap
