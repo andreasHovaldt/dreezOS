@@ -4,6 +4,9 @@
 #  Port 25565
 #  IdentityFile /path/to/key
 
+Host *
+  SetEnv TERM=xterm-256color
+
 Host ai-lab1
   HostName ailab-fe01.srv.aau.dk
   User qu30hs@student.aau.dk
