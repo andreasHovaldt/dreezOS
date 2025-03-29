@@ -12,8 +12,7 @@
       ../../config/system/default.nix
     ];
 
-  # Bootloader modules - Choose one
-  grub.enable = false;
+  # Bootloader
   systemd-boot.enable = true;
 
   # System basics
@@ -22,14 +21,8 @@
   # Desktop environment
   sddm.enable = true;
   hyprland.enable = true;
-
-  # Display manager
-  gdm.enable = false;
-
-  # Desktop manager
   gnome.enable = true;
-  kde-plasma6.enable = false;
-
+  stylix-theme.enable = true;
 
   # System modules
   power.enable = true;
@@ -47,7 +40,7 @@
   users.users.dreezy = {
     isNormalUser = true;
     description = "Andreas Højrup";
-    extraGroups = [ "networkmanager" "wheel" "seat" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 

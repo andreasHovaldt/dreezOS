@@ -12,6 +12,7 @@
     #./modules/xremap
     ./modules/bluetooth
     ./modules/cachix
+    ./modules/stylix-theme
 
     ./modules/desktop-environment/hyprland
     ./modules/desktop-environment/display-manager/gdm
