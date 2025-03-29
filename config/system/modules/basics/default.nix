@@ -6,7 +6,6 @@ let
     htop
     tmux
     nixpkgs-fmt
-    font-awesome
   ];
 in
 {

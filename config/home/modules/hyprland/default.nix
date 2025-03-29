@@ -10,6 +10,10 @@ let
     waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
     dunst # or mako | Notification daemon
     libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
+
+    # Fonts
+    font-awesome
+    nerdfonts
   ];
 in
 {
