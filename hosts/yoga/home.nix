@@ -19,9 +19,14 @@
 
   # Enable Home Manager modules.
   shell.enable = true;
-  git.enable = true;
-  ghostty.enable = true;
+  terminal = {
+    enable = true;
+    ghostty.enable = true;
+    kitty.enable = false;
+    alacritty.enable = false;
+  };
   tmux.enable = true;
+  git.enable = true;
   hyprland.enable = true;
   ssh.enable = true;
   direnv.enable = true;
@@ -32,6 +37,7 @@
     # Util
     yazi
     neofetch
+    fastfetch
 
     # Programs
     discord

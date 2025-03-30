@@ -44,7 +44,7 @@ in
   config = lib.mkIf cfg.enable {
 
     # Bash setup
-    programs.bash = {
+    programs.bash = lib.mkIf cfg.bash.enable {
       enable = true;
       shellAliases = aliases;
       historySize = 20000;
@@ -53,7 +53,7 @@ in
 
 
     # Zsh theme
-    programs.starship = {
+    programs.starship = lib.mkIf cfg.zsh.enable {
       enable = true;
       settings = {
         add_newline = true;
@@ -63,7 +63,7 @@ in
     };
 
     # Zsh setup
-    programs.zsh = {
+    programs.zsh = lib.mkIf cfg.zsh.enable {
       enable = true;
       shellAliases = aliases;
       history = {
