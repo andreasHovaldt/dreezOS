@@ -4,6 +4,7 @@ let
   dependencies = with pkgs; [
     zoxide
     fzf
+    starship
   ];
 
   aliases = {
@@ -42,6 +43,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    # Bash setup
     programs.bash = {
       enable = true;
       shellAliases = aliases;
@@ -49,6 +51,18 @@ in
       historyFile = "$HOME/.bash_history";
     };
 
+
+    # Zsh theme
+    programs.starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        command_timeout = 1300;
+        scan_timeout = 50;
+      };
+    };
+
+    # Zsh setup
     programs.zsh = {
       enable = true;
       shellAliases = aliases;
@@ -80,8 +94,10 @@ in
       };
 
       dotDir = ".config/zsh";
+
       initExtra = ''
         eval "$(zoxide init --cmd cd zsh)"
+        eval "$(starship init zsh)"
       '';
     };
 

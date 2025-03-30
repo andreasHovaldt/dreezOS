@@ -16,7 +16,7 @@ in
 
     colorscheme = lib.mkOption {
       type = lib.types.str;
-      default = "ayu-dark"; # ayu-dark, ayu-mirage
+      default = "da-one-black"; # da-one-black, ayu-dark, ayu-mirage
       description = ''
         The color scheme to use. See the Tinted Gallery for more options.
         https://tinted-theming.github.io/tinted-gallery/
