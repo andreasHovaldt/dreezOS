@@ -9,7 +9,6 @@
     ./modules/pipewire
     ./modules/power
     ./modules/gnupg
-    #./modules/xremap
     ./modules/bluetooth
     ./modules/cachix
     ./modules/stylix-theme

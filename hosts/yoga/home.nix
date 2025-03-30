@@ -23,8 +23,6 @@
   ghostty.enable = true;
   tmux.enable = true;
   hyprland.enable = true;
-  stylix-theme.enable = false;
-  swww.enable = false;
   ssh.enable = true;
   direnv.enable = true;
 
