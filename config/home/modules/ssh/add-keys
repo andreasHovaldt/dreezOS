@@ -1,0 +1,15 @@
+if [ -S "$SSH_AUTH_SOCK" ]; then
+    for key in $HOME/.ssh/*; do
+    if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
+        $(which ssh-add) "$key" 2>/dev/null || true
+    fi
+    done
+fi
+
+# if [ -S "$SSH_AUTH_SOCK" ]; then
+#     for key in $HOME/.ssh/*; do
+#     if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
+#         ${pkgs.openssh}/bin/ssh-add "$key" 2>/dev/null || true
+#     fi
+#     done
+# fi
