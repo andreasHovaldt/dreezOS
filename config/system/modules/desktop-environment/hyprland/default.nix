@@ -6,6 +6,10 @@ let
     egl-wayland
     wayland-utils
     kdePackages.wayland-protocols
+
+    # System utils
+    brightnessctl
+
   ] else [ ]);
 
 in

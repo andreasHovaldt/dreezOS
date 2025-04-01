@@ -25,6 +25,14 @@ in
     # Enable the ssh-agent
     programs.ssh.startAgent = true;
 
+    # Open ports in the firewall
+    networking.firewall.allowedTCPPorts = [
+      # 22 # SSH
+      # 80 # HTTP
+      # 443 # HTTPS
+      # 8786 # Dask worker
+    ];
+
     # Install dependencies
     environment.systemPackages = dependencies;
   };

@@ -21,7 +21,7 @@
   # Desktop environment
   sddm.enable = true;
   hyprland.enable = true;
-  gnome.enable = true;
+  #gnome.enable = true;
   stylix-theme.enable = true;
 
   # System modules
