@@ -9,5 +9,6 @@
     ./modules/ssh
     ./modules/direnv
     ./modules/terminal
+    ./modules/stylix-theme
   ];
 }

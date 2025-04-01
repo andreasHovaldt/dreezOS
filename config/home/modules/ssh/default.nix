@@ -32,21 +32,21 @@ in
       includes = [ sshConfig ];
     };
 
-    systemd.user.services = {
-      ssh-auto-key = {
-        Unit = {
-          Description = "Auto add ssh keys to the agent";
-        };
-        Service = {
-          Type = "oneshot";
-          ExecStart = ''
-            /bin/sh ${sshAddKeys}
-          '';
-          StandardOutput = "journal";
-          StandardError = "journal";
-        };
-      };
-    };
+    # systemd.user.services = {
+    #   ssh-auto-key = {
+    #     Unit = {
+    #       Description = "Auto add ssh keys to the agent";
+    #     };
+    #     Service = {
+    #       Type = "oneshot";
+    #       ExecStart = ''
+    #         /bin/sh ${sshAddKeys}
+    #       '';
+    #       StandardOutput = "journal";
+    #       StandardError = "journal";
+    #     };
+    #   };
+    # };
 
     # Install dependencies
     home.packages = dependencies;

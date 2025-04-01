@@ -2,13 +2,7 @@
 let
   cfg = config.stylix-theme;
 
-  dependencies = with pkgs; [
-    ## -- Write pkgs dependencies here -- ##
-
-
-
-    ## -- End of dependencies -- ##
-  ];
+  dependencies = with pkgs; [ ];
 in
 {
   options.stylix-theme = {
@@ -24,24 +18,21 @@ in
     };
 
     wallpaper = lib.mkOption {
-      type = lib.types.str;
-      default = "../../../assets/gruvbox-wallpapers/irl/road.jpg";
+      type = lib.types.path;
+      default = ./../../../assets/gruvbox-wallpapers/irl/road.jpg;
+      description = "Path to the wallpaper image.";
     };
 
   };
 
   config = lib.mkIf cfg.enable {
-    ## -- Write your configuration here -- ##
 
     stylix = {
       enable = true;
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
-      #image = cfg.wallpaper;
-      image = ../../../assets/gruvbox-wallpapers/irl/road.jpg;
+      image = cfg.wallpaper;
     };
-
-    ## -- End of configuration -- ##
 
     # Install dependencies
     environment.systemPackages = dependencies;
