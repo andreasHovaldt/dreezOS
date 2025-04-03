@@ -6,6 +6,9 @@ let
     htop
     tmux
     nixpkgs-fmt
+    tldr
+    zip
+    unzip
   ];
 in
 {
