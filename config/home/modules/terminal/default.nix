@@ -1,7 +1,11 @@
 { pkgs, lib, config, ... }:
 let
   cfg = config.terminal;
-  dependencies = with pkgs; [ ];
+  dependencies = with pkgs; [ ] ++
+    lib.optionals cfg.wezterm.enable [ wezterm ] ++
+    lib.optionals cfg.ghostty.enable [ ghostty ] ++
+    lib.optionals cfg.kitty.enable [ kitty ] ++
+    lib.optionals cfg.alacritty.enable [ alacritty ];
 in
 {
   options.terminal = {
@@ -39,6 +43,21 @@ in
     };
 
     ### TODO: make the other configs
+    # Kitty setup
+    programs.kitty = lib.mkIf cfg.kitty.enable {
+      enable = true;
+      shellIntegration = {
+        enableBashIntegration = lib.mkIf config.shell.bash.enable true;
+        enableZshIntegration = lib.mkIf config.shell.zsh.enable true;
+      };
+      settings = { };
+    };
+
+    programs.alacritty = lib.mkIf cfg.alacritty.enable {
+      enable = true;
+      settings = { };
+    };
+
 
     # Install dependencies
     home.packages = dependencies;
