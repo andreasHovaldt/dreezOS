@@ -27,7 +27,7 @@
   };
   tmux.enable = true;
   git.enable = true;
-  stylix-theme.enable = false;
+  stylix-theme.enable = true;
   hyprland.enable = true;
   ssh.enable = true;
   direnv.enable = true;
