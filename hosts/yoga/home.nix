@@ -21,7 +21,8 @@
   shell.enable = true;
   terminal = {
     enable = true;
-    ghostty.enable = true;
+    wezterm.enable = true;
+    ghostty.enable = false;
     kitty.enable = false;
     alacritty.enable = false;
   };

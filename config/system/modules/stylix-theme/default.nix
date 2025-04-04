@@ -19,7 +19,7 @@ in
 
     wallpaper = lib.mkOption {
       type = lib.types.path;
-      default = ./../../../assets/gruvbox-wallpapers/irl/road.jpg;
+      default = ../../../assets/gruvbox-wallpapers/irl/village.jpg;
       description = "Path to the wallpaper image.";
     };
 

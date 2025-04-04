@@ -9,5 +9,6 @@
     ./modules/direnv
     ./modules/terminal
     ./modules/stylix-theme
+    ./modules/hyprpaper
   ];
 }

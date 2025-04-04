@@ -34,6 +34,9 @@ in
       NIXOS_OZONE_WL = "1";
     };
 
+    # Wallpaper
+    hyprpaper.enable = true;
+
     # Install dependencies
     home.packages = dependencies;
   };
