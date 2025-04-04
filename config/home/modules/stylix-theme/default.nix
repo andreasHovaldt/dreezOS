@@ -16,12 +16,6 @@ in
       '';
     };
 
-    wallpaper = lib.mkOption {
-      type = lib.types.path;
-      default = ../../../assets/gruvbox-wallpapers/irl/village.jpg;
-      description = "Path to the wallpaper image.";
-    };
-
   };
 
   config = lib.mkIf cfg.enable {
@@ -30,7 +24,6 @@ in
       enable = true;
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
-      #image = cfg.wallpaper;
     };
 
     # Install dependencies

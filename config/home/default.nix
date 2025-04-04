@@ -10,5 +10,6 @@
     ./modules/terminal
     ./modules/stylix-theme
     ./modules/hyprpaper
+    ./modules/wpaperd
   ];
 }

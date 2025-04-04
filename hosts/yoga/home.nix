@@ -30,6 +30,7 @@
   git.enable = true;
   stylix-theme.enable = true;
   hyprland.enable = true;
+  wpaperd.enable = true;
   ssh.enable = true;
   direnv.enable = true;
 
