@@ -1,14 +1,15 @@
 { pkgs, lib, config, ... }:
 let
-  waybar-experimental = pkgs.waybar.overrideAttrs (oldAttrs: {
-    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-  });
+  # waybar-experimental = pkgs.waybar.overrideAttrs (oldAttrs: {
+  #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+  # });
 
   cfg = config.hyprland;
   dependencies = with pkgs; [
     rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
-    waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
-    dunst # or mako | Notification daemon
+    #waybar-experimental # Examples: https://github.com/Alexays/Waybar/wiki/Examples
+    #dunst # or mako | Notification daemon
+    swaynotificationcenter
     libnotify # Required for dunst or mako, sends desktop notifications to a notification daemon
 
     # Fonts

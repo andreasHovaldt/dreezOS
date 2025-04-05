@@ -9,8 +9,8 @@
     # Or execute your favorite apps at launch like this:
 
     exec-once = [
-      "waybar" # TODO: Move this to the waybar module
-      "dunst"
+      #"dunst"
+      "swaync"
       "nm-applet - -indicator"
     ];
 

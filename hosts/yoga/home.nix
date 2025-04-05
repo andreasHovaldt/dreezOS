@@ -31,6 +31,7 @@
   stylix-theme.enable = true;
   hyprland.enable = true;
   wpaperd.enable = true;
+  waybar.enable = true;
   ssh.enable = true;
   direnv.enable = true;
 
