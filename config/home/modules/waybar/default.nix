@@ -26,21 +26,15 @@ in
   config = lib.mkIf cfg.enable {
 
     # Waybar config
-    # home.file.".config/waybar" = {
-    #   source = ./src;
-    #   recursive = true;
-    # };
+    home.file.".config/waybar" = {
+      source = ./src;
+      recursive = true;
+    };
 
     # Enable Waybar for Hyprland
     wayland.windowManager.hyprland.settings = lib.mkIf config.hyprland.enable {
       exec-once = [ "waybar" ];
 
-      # elifout waybar config
-      # layerrule = [
-      #   "blur, waybar"
-      #   "ignorezero, waybar"
-      #   "ignorealpha 0.5, waybar"
-      # ];
     };
 
     # Install dependencies
