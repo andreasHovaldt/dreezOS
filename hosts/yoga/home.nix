@@ -32,6 +32,7 @@
   hyprland.enable = true;
   wpaperd.enable = true;
   waybar.enable = true;
+  swaync.enable = true;
   ssh.enable = true;
   direnv.enable = true;
 

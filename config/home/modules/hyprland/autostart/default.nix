@@ -9,8 +9,6 @@
     # Or execute your favorite apps at launch like this:
 
     exec-once = [
-      #"dunst"
-      "swaync"
       "nm-applet - -indicator"
     ];
 
