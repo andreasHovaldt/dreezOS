@@ -37,11 +37,11 @@ in
     };
 
     # Add exec-once to hyprland config
-    # wayland.windowManager.hyprland.settings = lib.mkIf cfg.hyprland.enable {
-    #   exec-once = [
-    #     "wpaperd &"
-    #   ];
-    # };
+    wayland.windowManager.hyprland.settings = lib.mkIf config.hyprland.enable {
+      exec-once = [
+        "wpaperd"
+      ];
+    };
 
     # Install dependencies
     home.packages = dependencies;

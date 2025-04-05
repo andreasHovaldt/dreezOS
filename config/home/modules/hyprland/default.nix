@@ -21,22 +21,49 @@ in
     hyprland.enable = lib.mkEnableOption "enable hyprland";
   };
 
+  imports = [
+    ./input
+    ./keybinds
+    ./theme
+    ./programs
+    ./autostart
+  ];
+
   config = lib.mkIf cfg.enable {
 
-    # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
-    wayland.windowManager.hyprland.systemd.enable = false;
+    # Hyprland config
+    wayland.windowManager.hyprland = {
+      enable = true;
 
-    home.sessionVariables = {
-      # If your cursor becomes invisible
-      # WLR_NO_HARDWARE_CURSORS = "1";
+      # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
+      systemd.enable = false;
 
-      # Hint electron apps to use wayland
-      NIXOS_OZONE_WL = "1";
+      settings = {
+
+        # See full settings in the files:
+        # - ./input/default.nix
+        # - ./keybinds/default.nix
+        # - ./theme/default.nix
+        # - ./programs/default.nix
+        # - ./autostart/default.nix
+
+        #############################
+        ### ENVIRONMENT VARIABLES ###
+        #############################
+
+        # See https://wiki.hyprland.org/Configuring/Environment-variables/
+
+        env = [
+          "XCURSOR_SIZE,24"
+          "HYPRCURSOR_SIZE,24"
+          "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2" # <-- TODO: Check if this is needed, might be an artifact from my old config
+        ];
+
+      };
+
     };
 
-    # Wallpaper
-    hyprpaper.enable = true;
-
+    #wayland.windowManager.hyprland.systemd.enable = false;
     # Install dependencies
     home.packages = dependencies;
   };

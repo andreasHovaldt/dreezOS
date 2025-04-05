@@ -1,16 +1,11 @@
 { pkgs, lib, config, inputs, ... }:
 let
-  dependencies = with pkgs; [ ]
-    # https://wiki.hyprland.org/Nvidia/
-    ++ (if (config.nvidia.enable or false) then [
-    egl-wayland
-    wayland-utils
-    kdePackages.wayland-protocols
-
+  dependencies = with pkgs; [
     # System utils
     brightnessctl
-
-  ] else [ ]);
+  ]
+  # https://wiki.hyprland.org/Nvidia/
+  ++ (if (config.nvidia.enable or false) then [ egl-wayland ] else [ ]);
 
 in
 {
@@ -30,26 +25,12 @@ in
       withUWSM = true;
     };
 
+    environment.sessionVariables = {
+      # Hint electron apps to use wayland
+      NIXOS_OZONE_WL = "1";
+    };
+
     # Install dependencies
     environment.systemPackages = dependencies;
   };
 }
-
-
-
-
-
-
-### Im still unsure if this is needed?
-### It seems to work fine without.
-# https://mynixos.com/nixpkgs/option/programs.uwsm.waylandCompositors
-# programs.uwsm = {
-#   enable = true;
-#   waylandCompositors = {
-#     hyprland = {
-#       prettyName = "Hyprland";
-#       comment = "Hyprland compositor managed by UWSM";
-#       binPath = "/run/current-system/sw/bin/Hyprland";
-#     };
-#   };
-# };
