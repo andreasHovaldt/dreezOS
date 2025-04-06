@@ -33,6 +33,7 @@
   docker.enable = false;
   gnupg.enable = false;
   services.printing.enable = true;
+  services.envfs.enable = true; # Should help resolve shebangs !/bin/bash
   programs.firefox.enable = true;
   programs.direnv.enable = true;
 

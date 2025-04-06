@@ -30,6 +30,17 @@ in
       NIXOS_OZONE_WL = "1";
     };
 
+    # Hyprlock authentication
+    # Hyprlock PAM config
+    security.pam.services.hyprlock = lib.mkIf config.hyprland.enable {
+      text = ''
+        auth     include login
+        account  include login
+        password include login
+        session  include login
+      '';
+    };
+
     # Install dependencies
     environment.systemPackages = dependencies;
   };

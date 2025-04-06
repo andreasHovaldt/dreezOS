@@ -1,9 +1,8 @@
 { pkgs, lib, config, ... }:
 let
   cfg = config.wpaperd;
-  dependencies = with pkgs; [ wpaperd ];
-
-  wallpaper_dir = "${config.home.homeDirectory}/.config/wallpapers";
+  dependencies = with pkgs; [ wpaperd hypridle ];
+  wallpaperDir = "${config.home.homeDirectory}/.config/wallpapers";
 
 in
 {
@@ -13,11 +12,17 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    # Wallpaper directory
+
     home.file = {
+      # Wallpaper directory
       ".config/wallpapers" = {
         source = ../../../assets/gruvbox-wallpapers/irl;
         recursive = true;
+      };
+      # Current wallpaper script
+      ".config/wpaperd/current-wallpaper.sh" = {
+        source = ./current-wallpaper.sh;
+        executable = true;
       };
     };
 
@@ -32,8 +37,11 @@ in
         mode = "center"
         sorting = "random"
         recursive = "true"
-        path = "${wallpaper_dir}"
+        path = "${wallpaperDir}"
       '';
+      # [eDP-1]
+      # duration = "3s"
+      # exec = "${config.home.homeDirectory}/.config/wpaperd/current-wallpaper.sh" # TODO: https://github.com/danyspin97/wpaperd/issues/123
     };
 
     # Add exec-once to hyprland config

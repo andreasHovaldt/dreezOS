@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Let Home Manager manage the user's home directory.
+  # Let Home Manager manage the user's home directory
   home = {
     username = "dreezy";
     homeDirectory = "/home/dreezy";
@@ -12,12 +12,12 @@
     };
   };
 
-  # Import Home Manager modules.
+  # Import Home Manager modules
   imports = [
     ../../config/home/default.nix
   ];
 
-  # Enable Home Manager modules.
+  # Home Manager modules
   shell.enable = true;
   terminal = {
     enable = true;
@@ -28,15 +28,19 @@
   };
   tmux.enable = true;
   git.enable = true;
-  stylix-theme.enable = true;
-  hyprland.enable = true;
-  wpaperd.enable = true;
-  waybar.enable = true;
-  swaync.enable = true;
   ssh.enable = true;
   direnv.enable = true;
 
-  # Misc Home Manager packages.
+  # Desktop environment
+  stylix-theme.enable = true; # Theming
+  hyprland.enable = true; # Window manager
+  hyprlock.enable = true; # Lock screen
+  wpaperd.enable = true; # Wallpaper manager
+  waybar.enable = true; # Status bar
+  swaync.enable = true; # Notification center
+
+
+  # Misc Home Manager packages
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # Util
@@ -52,6 +56,6 @@
     spotify
   ];
 
-  # Let Home Manager install and manage itself.
+  # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 }

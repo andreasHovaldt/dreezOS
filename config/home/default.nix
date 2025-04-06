@@ -12,5 +12,6 @@
     ./modules/wpaperd
     ./modules/waybar
     ./modules/swaync
+    ./modules/hyprlock
   ];
 }
