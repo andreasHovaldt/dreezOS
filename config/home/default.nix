@@ -9,7 +9,6 @@
     ./modules/direnv
     ./modules/terminal
     ./modules/stylix-theme
-    ./modules/hyprpaper
     ./modules/wpaperd
     ./modules/waybar
     ./modules/swaync
