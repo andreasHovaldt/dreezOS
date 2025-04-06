@@ -1,4 +1,5 @@
 {
+    "mainBar": {
         "layer": "top",
         "position": "top",
         "margin-left": 10,
@@ -13,9 +14,6 @@
 
         "hyprland/workspaces": {
             "format": "{name}" 
-            // "persistent-workspaces": {
-            //     "*": [ 1,2,3 ]
-            // }
         },
 
         "custom/notification": {
@@ -25,7 +23,6 @@
             "escape": true
         },
         
-        // https://github.com/Alexays/Waybar/wiki/Module:-Clock
         "clock": {
             "format": " {:%T | %A | %d/%m/%y}",
             "interval": 1,   
@@ -97,7 +94,7 @@
                 "headphone": "󱡏",
                 "hands-free": "󱡏",
                 "headset": "󱡏",
-                "default": ["󰕿", "󰖀", "󰕾"]//["", "", ""]//["",""]
+                "default": ["󰕿", "󰖀", "󰕾"]
             }
         },
 
@@ -107,9 +104,6 @@
             "format-source-muted": "",
             "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
             "on-click-right": "pavucontrol"
-            // "on-scroll-up": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 1%+",
-            // "on-scroll-down": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 1%-",
-            // "scroll-step": 2.5
         },
 
         "custom/expand": {
@@ -162,16 +156,6 @@
             "icon-size": 14,
             "spacing": 6
         }
-
-
-        // Example of a custom module
-        // "custom/colorpicker": {
-        //     "format": "{}",
-        //     "return-type": "json",
-        //     "interval": "once",
-        //     "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
-        //     "on-click": "~/.config/waybar/scripts/colorpicker.sh",
-        //     "signal": 1
-        // },
+    }
 } 
 

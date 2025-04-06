@@ -2,11 +2,6 @@
 let
   cfg = config.waybar;
 
-  # Waybar experimental version
-  waybar-experimental = pkgs.waybar.overrideAttrs (oldAttrs: {
-    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-  });
-
 in
 {
   options.waybar = {
@@ -15,32 +10,27 @@ in
       default = config.hyprland.enable;
       description = "Enable Waybar. Defaults to true if Hyprland is enabled.";
     };
-
-    enableExperimental = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable experimental build of Waybar. Defaults to true.";
-    };
   };
 
   config = lib.mkIf cfg.enable {
 
+    # Disable default Stylix CSS for Waybar
+    # https://stylix.danth.me/options/modules/waybar.html
+    # https://github.com/danth/stylix/blob/9a3fb931fdfc5d6be48dc3c90fe775aada78efba/modules/waybar/hm.nix
+    stylix.targets.waybar.addCss = false;
+
     # Waybar config
-    home.file.".config/waybar" = {
-      source = ./src;
-      recursive = true;
+    programs.waybar = {
+      enable = true;
+
+      # https://github.com/Alexays/Waybar/wiki/
+      settings = lib.importJSON ./src/config.json;
+      style = lib.mkAfter (builtins.readFile ./src/style.css);
     };
 
     # Enable Waybar for Hyprland
     wayland.windowManager.hyprland.settings = lib.mkIf config.hyprland.enable {
       exec-once = [ "waybar" ];
-
     };
-
-    # Install dependencies
-    home.packages = lib.mkMerge [
-      (lib.mkIf cfg.enableExperimental [ waybar-experimental ])
-      (lib.mkIf (!cfg.enableExperimental) [ pkgs.waybar ])
-    ];
   };
 }
