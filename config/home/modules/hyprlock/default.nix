@@ -56,8 +56,8 @@ in
           shadow_passes = 2;
           shadow_size = 2;
           rounding = 20;
-          placeholder_text = " <b><i></i></b> ";
-          fail_text = " <b><i>  </i></b> ";
+          placeholder_text = "<b><i>  </i></b>";
+          fail_text = "<b><i>    </i></b>";
           fail_timeout = 1000;
           position = "0, -220";
           halign = "center";
@@ -68,7 +68,7 @@ in
           # clock: https://fmt.dev/latest/syntax/#chrono-format-specifications
           {
             monitor = "";
-            text = ''cmd[update:1000] date +" <b>%H</b> "'';
+            text = ''cmd[update:1000] date +"<b> %H </b>"'';
             color = "rgba(255,255,255,1.0)";
             font_size = 200;
             font_family = hyprlockFont;
@@ -80,7 +80,7 @@ in
           }
           {
             monitor = "";
-            text = ''cmd[update:1000] date +" <b>%M</b> "'';
+            text = ''cmd[update:1000] date +"<b> %M </b>"'';
             color = "rgba(150,150,150, .4)";
             font_size = 200;
             font_family = hyprlockFont;
@@ -92,7 +92,7 @@ in
           }
           {
             monitor = "";
-            text = ''cmd[update:1000] date +" <b>%A, %B %d, %Y</b> "'';
+            text = ''cmd[update:1000] date +"<b> %A, %B %d, %Y </b>"'';
             color = "rgba(255,255,255,0.7)";
             font_size = 40;
             font_family = hyprlockFont;
@@ -104,7 +104,7 @@ in
           }
           {
             monitor = "";
-            text = '' <i>Hello</i> <b>$USER</b> '';
+            text = ''<i> Hello</i> <b>$USER </b>'';
             color = "rgba(255,255,255,0.7)";
             font_size = 40;
             font_family = hyprlockFont;
