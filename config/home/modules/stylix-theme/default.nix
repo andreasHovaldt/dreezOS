@@ -26,6 +26,35 @@ in
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
     };
 
+    # Enable Stylix fonts for Home-manager
+    fonts.fontconfig.enable = true;
+
+
+    # Create file showing current Stylix variables
+    home.file = {
+      ".config/stylix/current-config.txt" = {
+        text = ''
+          Stylix variables
+          ==================
+          
+          Base16 scheme: "${config.stylix.base16Scheme}"
+          
+          Fonts: 
+          - Serif: "${config.stylix.fonts.serif.name}"
+          - SansSerif: "${config.stylix.fonts.sansSerif.name}"
+          - Monospace: "${config.stylix.fonts.monospace.name}"
+          - Emoji: "${config.stylix.fonts.emoji.name}"
+          
+          Font sizes:
+          - Applications: "${toString config.stylix.fonts.sizes.applications}"
+          - Desktop: "${toString config.stylix.fonts.sizes.desktop}"
+          - Popups: "${toString config.stylix.fonts.sizes.popups}"
+          - terminal: "${toString config.stylix.fonts.sizes.terminal}"
+        '';
+      };
+    };
+
+
     # Install dependencies
     home.packages = dependencies;
   };
