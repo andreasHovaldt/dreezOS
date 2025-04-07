@@ -1,13 +1,24 @@
 { pkgs, lib, config, ... }:
 let
   cfg = config.wpaperd;
-  dependencies = with pkgs; [ wpaperd hypridle ];
+  dependencies = with pkgs; [ wpaperd ];
   wallpaperDir = "${config.home.homeDirectory}/.config/wallpapers";
+  staticWallpaper = "${wallpaperDir}/pexels-stywo-1054218.jpg";
 
 in
 {
   options = {
     wpaperd.enable = lib.mkEnableOption "enable wpaperd";
+    wpaperd.wallpaperDir = lib.mkOption {
+      type = lib.types.path;
+      default = wallpaperDir;
+      description = "Directory for wallpapers.";
+    };
+    wpaperd.staticWallpaper = lib.mkOption {
+      type = lib.types.path;
+      default = staticWallpaper;
+      description = "Static wallpaper file.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -33,12 +44,17 @@ in
     home.file.".config/wpaperd/config.toml" = {
       text = ''
         [default]
-        duration = "30m"
         mode = "center"
-        sorting = "random"
-        recursive = "true"
-        path = "${wallpaperDir}"
+        path = "${cfg.staticWallpaper}"
       '';
+      # text = ''
+      #   [default]
+      #   duration = "30m"
+      #   mode = "center"
+      #   sorting = "random"
+      #   recursive = "true"
+      #   path = "${cfg.wallpaperDir}"
+      # '';
       # [eDP-1]
       # duration = "3s"
       # exec = "${config.home.homeDirectory}/.config/wpaperd/current-wallpaper.sh" # TODO: https://github.com/danyspin97/wpaperd/issues/123

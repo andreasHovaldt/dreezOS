@@ -6,6 +6,7 @@ let
 
   cfg = config.hyprland;
   dependencies = with pkgs; [
+    hypridle
     rofi-wayland # app launcher https://github.com/TheMipMap/NixOS/blob/main/config/home/modules/hyprland/default.nix
 
     # Fonts
