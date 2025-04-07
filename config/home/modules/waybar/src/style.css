@@ -1,6 +1,7 @@
-* {
-    font-family: "CodeNewRoman Nerd Font Propo"; /* Padding is fucked if using stylix font */
-}
+/* !Padding is fucked if not using this font! */
+/* * {
+    font-family: "CodeNewRoman Nerd Font Propo";
+} */
 window#waybar{
     border-radius:10px;
     background: alpha(@base00, 0.65); /*background*/
@@ -95,14 +96,14 @@ tooltip {
 
 #group-expand{
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }
 
 #custom-expand{
     padding: 0px 5px;
     color: alpha(@base04, 0.2);; /*foreground*/
     text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }
 
 #custom-expand:hover{
@@ -112,7 +113,7 @@ tooltip {
 
 #cpu,#memory,#temperature,#backlight{
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
     color: alpha(@base07, 0.8); /*color7*/
 }
 
@@ -125,15 +126,15 @@ tooltip {
 
 #tray{
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }
 
 #tray menu * {
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }
 
 #tray menu separator {
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }

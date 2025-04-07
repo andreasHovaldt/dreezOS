@@ -1,7 +1,8 @@
 { pkgs, lib, config, ... }:
 let
   cfg = config.hyprlock;
-  currentWallpaper = "${config.home.homeDirectory}/.config/wpaperd/current_wallpaper";
+  # currentWallpaper = "${config.home.homeDirectory}/.config/wpaperd/current_wallpaper";
+  hyprlockFont = "${config.stylix.fonts.sansSerif.name}";
   dependencies = with pkgs; [ ];
 in
 {
@@ -34,7 +35,8 @@ in
         background = lib.mkForce {
           #path = "$(wpaperctl get-wallpaper eDP-1)";
           #path = currentWallpaper; # TODO: https://github.com/danyspin97/wpaperd/issues/123
-          path = "/home/dreezy/.config/wallpapers/pexels-stywo-1054218.jpg";
+          #path = "/home/dreezy/.config/wallpapers/pexels-stywo-1054218.jpg";
+          path = config.wpaperd.staticWallpaper;
           blur_size = 5;
           blur_passes = 3;
           brightness = 0.6;
@@ -48,14 +50,14 @@ in
           outline_thickness = 0;
           dots_rounding = -1;
           dots_spacing = 0.5;
-          font_family = "CodeNewRoman Nerd Font Propo";
+          font_family = hyprlockFont;
           fade_on_empty = false;
           shadow_color = "rgba(0,0,0,0.5)";
           shadow_passes = 2;
           shadow_size = 2;
           rounding = 20;
-          placeholder_text = "<b><i></i></b>";
-          fail_text = "<b><i>  </i></b>";
+          placeholder_text = " <b><i></i></b> ";
+          fail_text = " <b><i>  </i></b> ";
           fail_timeout = 1000;
           position = "0, -220";
           halign = "center";
@@ -63,12 +65,13 @@ in
         }];
 
         label = [
+          # clock: https://fmt.dev/latest/syntax/#chrono-format-specifications
           {
             monitor = "";
-            text = ''cmd[update:1000] date +"<b>%I</b>"'';
+            text = ''cmd[update:1000] date +" <b>%H</b> "'';
             color = "rgba(255,255,255,1.0)";
             font_size = 200;
-            font_family = "CodeNewRoman Nerd Font Propo";
+            font_family = hyprlockFont;
             shadow_passes = 0;
             shadow_size = 5;
             position = "-120, 310";
@@ -77,10 +80,10 @@ in
           }
           {
             monitor = "";
-            text = ''cmd[update:1000] date +"<b>%M</b>"'';
+            text = ''cmd[update:1000] date +" <b>%M</b> "'';
             color = "rgba(150,150,150, .4)";
             font_size = 200;
-            font_family = "CodeNewRoman Nerd Font Propo";
+            font_family = hyprlockFont;
             shadow_passes = 0;
             shadow_size = 5;
             position = "120, 130";
@@ -89,10 +92,10 @@ in
           }
           {
             monitor = "";
-            text = ''cmd[update:1000] date +"<b>%A, %B %d, %Y</b>"'';
+            text = ''cmd[update:1000] date +" <b>%A, %B %d, %Y</b> "'';
             color = "rgba(255,255,255,0.7)";
             font_size = 40;
-            font_family = "CodeNewRoman Nerd Font Propo";
+            font_family = hyprlockFont;
             shadow_passes = 0;
             shadow_size = 4;
             position = "-40, 20";
@@ -101,10 +104,10 @@ in
           }
           {
             monitor = "";
-            text = ''<i>Hello</i> <b>$USER</b>'';
+            text = '' <i>Hello</i> <b>$USER</b> '';
             color = "rgba(255,255,255,0.7)";
             font_size = 40;
-            font_family = "CodeNewRoman Nerd Font Propo";
+            font_family = hyprlockFont;
             shadow_passes = 0;
             shadow_size = 4;
             position = "40, -20";
