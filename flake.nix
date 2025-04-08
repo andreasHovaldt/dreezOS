@@ -7,6 +7,7 @@
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -31,13 +32,19 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
 
+      unstablePkgs = import nixos-unstable {
+        inherit system;
         config = {
           allowUnfree = true;
         };
@@ -60,7 +67,7 @@
                 useUserPackages = true;
                 users.dreezy = import ./hosts/yoga/home.nix;
                 backupFileExtension = "hm-backup"; # Fixes problems where existing configs interfere with home-manager
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = { inherit inputs unstablePkgs; };
               };
             }
 
