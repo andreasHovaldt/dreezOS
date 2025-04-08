@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, unstablePkgs, lib, config, ... }:
 let
   cfg = config.hyprlock;
   # currentWallpaper = "${config.home.homeDirectory}/.config/wpaperd/current_wallpaper";
@@ -23,25 +23,25 @@ in
     # current wallpaper $(wpaperctl get-wallpaper eDP-1)
     programs.hyprlock = {
       enable = true;
+      package = unstablePkgs.hyprlock;
 
       settings = with config.lib.stylix.colors; {
         general = {
           disable_loading_bar = false;
           grace = 0;
           hide_cursor = true;
-          no_fade_in = false;
         };
 
         background = lib.mkForce {
-          #path = "$(wpaperctl get-wallpaper eDP-1)";
-          #path = currentWallpaper; # TODO: https://github.com/danyspin97/wpaperd/issues/123
-          #path = "/home/dreezy/.config/wallpapers/pexels-stywo-1054218.jpg";
-          path = config.wpaperd.staticWallpaper;
+          monitor = "eDP-1";
+          #path = config.wpaperd.staticWallpaper;
+          path = config.wpaperd.currentWallpaper;
           blur_size = 5;
           blur_passes = 3;
           brightness = 0.6;
-          # reload_time = 1;
-          # reload_cmd = "wpaperctl get-wallpaper eDP-1"; # https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#background
+          reload_cmd = "wpaperctl get-wallpaper eDP-1"; # https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#background
+          reload_time = 60;
+          crossfade_time = 2.5;
         };
 
         input-field = lib.mkMerge [{
