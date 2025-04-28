@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Let Home Manager manage the user's home directory
   home = {
     username = "dreezy";
@@ -39,7 +41,6 @@
   waybar.enable = true; # Status bar
   swaync.enable = true; # Notification center
 
-
   # Misc Home Manager packages
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -55,6 +56,18 @@
     evince
     spotify
   ];
+
+  xdg.userDirs = {
+    enable = true;
+    desktop = null;
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    music = null;
+    pictures = "${config.home.homeDirectory}/Pictures";
+    publicShare = null;
+    templates = null;
+    videos = null;
+  };
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
