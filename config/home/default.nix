@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./modules/shell
     ./modules/git
@@ -13,5 +13,6 @@
     ./modules/waybar
     ./modules/swaync
     ./modules/hyprlock
+    ./modules/nvf
   ];
 }

@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  unstablePkgs,
+  inputs,
   ...
 }: {
   # Let Home Manager manage the user's home directory
@@ -17,6 +19,7 @@
   # Import Home Manager modules
   imports = [
     ../../config/home/default.nix
+    inputs.nvf.homeManagerModules.default
   ];
 
   # Home Manager modules
@@ -28,6 +31,7 @@
     kitty.enable = false;
     alacritty.enable = false;
   };
+  nvf.enable = true;
   tmux.enable = true;
   git.enable = true;
   ssh.enable = true;

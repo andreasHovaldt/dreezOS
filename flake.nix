@@ -1,6 +1,5 @@
 # Taken from: https://www.youtube.com/watch?v=rEovNpg7J0M
 # Build system: sudo nixos-rebuild switch --flake ~/mysystem/#yoga
-
 {
   description = "My basic system flake";
 
@@ -30,52 +29,54 @@
       inputs.nixpkgs.follows = "hyprland";
     };
 
+    nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = { self, nixpkgs, nixos-unstable, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-unstable,
+    home-manager,
+    nvf,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
       };
-
-      unstablePkgs = import nixos-unstable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-
-    in
-    {
-
-      nixosConfigurations = {
-        yoga = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-
-          modules = [
-            ./hosts/yoga/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.dreezy = import ./hosts/yoga/home.nix;
-                backupFileExtension = "hm-backup"; # Fixes problems where existing configs interfere with home-manager
-                extraSpecialArgs = { inherit inputs unstablePkgs; };
-              };
-            }
-
-            inputs.stylix.nixosModules.stylix
-
-          ];
-        };
-      };
-
     };
+
+    unstablePkgs = import nixos-unstable {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+  in {
+    nixosConfigurations = {
+      yoga = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
+
+        modules = [
+          ./hosts/yoga/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.dreezy = import ./hosts/yoga/home.nix;
+              backupFileExtension = "hm-backup"; # Fixes problems where existing configs interfere with home-manager
+              extraSpecialArgs = {inherit inputs unstablePkgs;};
+            };
+          }
+
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+    };
+  };
 }
