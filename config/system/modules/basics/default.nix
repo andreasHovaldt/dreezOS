@@ -7,8 +7,6 @@ let
     tmux
     nixpkgs-fmt
     tldr
-    zip
-    unzip
   ];
 in
 {
@@ -57,11 +55,6 @@ in
       enable32Bit = true;
     };
 
-    # Enable seatd as Seat Manager
-    # This is supposedly required for Hyprland to work properly
-    # remember to add your user to the "seat" group
-    #services.seatd.enable = true;
-
     # Garbage collection
     nix.gc = {
       automatic = true; # Enable automatic cleanup
@@ -74,6 +67,8 @@ in
     # Enable experimental features
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    # Remove XTerm from system
+    services.xserver.excludePackages = [ pkgs.xterm ];
 
     # Desktop portals handle interactions between desktop programs
     xdg.portal = {
