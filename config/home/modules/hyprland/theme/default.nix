@@ -108,7 +108,9 @@
     # https://wiki.hyprland.org/Configuring/Variables/#misc
     misc = {
       "force_default_wallpaper" = "0"; # Set to 0 or 1 to disable the anime mascot wallpapers
-      "disable_hyprland_logo" = "true"; # If true disables the random hyprland logo / anime girl background. :(
+      
+      # This one is now set to "true" by home manager, keeping it if the logo should re-appear at some point
+      #"disable_hyprland_logo" = "true"; # If true disables the random hyprland logo / anime girl background. :(
     };
 
 
