@@ -27,9 +27,9 @@ in
 
       settings = with config.lib.stylix.colors; {
         general = {
-          disable_loading_bar = false;
           grace = 0;
           hide_cursor = true;
+          fail_timeout = 1000;
         };
 
         background = lib.mkForce {
@@ -58,7 +58,6 @@ in
           rounding = 20;
           placeholder_text = "<b><i>  </i></b>";
           fail_text = "<b><i>    </i></b>";
-          fail_timeout = 1000;
           position = "0, -220";
           halign = "center";
           valign = "center";
