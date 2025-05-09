@@ -21,7 +21,6 @@
   # Desktop environment
   sddm.enable = true;
   hyprland.enable = true;
-  #gnome.enable = true;
   stylix-theme.enable = true;
 
   # System modules
@@ -30,10 +29,11 @@
   pipewire.enable = true;
   bluetooth.enable = true;
   nvidia.enable = true;
+  thunar.enable = true;
   docker.enable = false;
   gnupg.enable = false;
   services.printing.enable = true;
-  services.envfs.enable = true; # Should help resolve shebangs !/bin/bash
+  services.envfs.enable = false; # Should help resolve shebangs !/bin/bash
   programs.firefox.enable = true;
   programs.direnv.enable = true;
 

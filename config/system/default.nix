@@ -12,6 +12,7 @@
     ./modules/bluetooth
     ./modules/cachix
     ./modules/stylix-theme
+    ./modules/thunar
 
     ./modules/desktop-environment/hyprland
     ./modules/desktop-environment/display-manager/gdm
