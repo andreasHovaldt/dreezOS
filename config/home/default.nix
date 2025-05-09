@@ -3,7 +3,6 @@
     ./modules/shell
     ./modules/git
     ./modules/tmux
-    ./modules/firefox
     ./modules/hyprland
     ./modules/ssh
     ./modules/direnv
