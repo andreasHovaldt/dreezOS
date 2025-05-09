@@ -24,6 +24,14 @@ in
       enable = true;
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
+
+      # Enable custom icon theming in GTK apps
+      iconTheme = {
+        enable = true;
+        package = pkgs.papirus-icon-theme;
+        light = "Papirus";
+        dark = "Papirus-Dark";
+      };
     };
 
     # Enable Stylix fonts for Home-manager
