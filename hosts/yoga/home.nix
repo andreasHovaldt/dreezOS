@@ -63,16 +63,44 @@
     spotify
   ];
 
-  xdg.userDirs = {
-    enable = true;
-    desktop = "${config.home.homeDirectory}/Desktop";
-    documents = "${config.home.homeDirectory}/Documents";
-    download = "${config.home.homeDirectory}/Downloads";
-    music = "${config.home.homeDirectory}/Music";
-    pictures = "${config.home.homeDirectory}/Pictures";
-    publicShare = "${config.home.homeDirectory}/Public";
-    templates = "${config.home.homeDirectory}/Templates";
-    videos = "${config.home.homeDirectory}/Videos";
+  xdg = {
+    userDirs = {
+      enable = true;
+      desktop = "${config.home.homeDirectory}/Desktop";
+      documents = "${config.home.homeDirectory}/Documents";
+      download = "${config.home.homeDirectory}/Downloads";
+      music = "${config.home.homeDirectory}/Music";
+      pictures = "${config.home.homeDirectory}/Pictures";
+      publicShare = "${config.home.homeDirectory}/Public";
+      templates = "${config.home.homeDirectory}/Templates";
+      videos = "${config.home.homeDirectory}/Videos";
+    };
+    
+    
+    # Set default apps for mime types
+    # https://mimetype.io/all-types
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/plain" = "code.desktop";
+        "text/css" = "code.desktop";
+        "text/csv" = "code.desktop";
+        "text/javascript" = "code.desktop";
+        "text/markdown" = "code.desktop";
+        "text/x-c" = "code.desktop";
+        "text/x-fortran" = "code.desktop";
+        "text/x-java-source" = "code.desktop";
+        "text/x-pascal" = "code.desktop";
+        "text/x-python" = "code.desktop";
+        "text/html" = [ "firefox.desktop" "code.desktop"];
+
+        "application/x-sh" = "code.desktop";
+        "application/x-tex" = "code.desktop";
+        "application/yaml" = "code.desktop";
+        "application/json" = "code.desktop";
+        "application/xml" = "code.desktop";
+      };
+    };
   };
 
   # Let Home Manager install and manage itself
