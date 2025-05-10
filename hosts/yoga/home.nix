@@ -12,7 +12,7 @@
     stateVersion = "24.11";
     sessionVariables = {
       TERMINAL = "wezterm";
-      EDITOR = "nvim";
+      EDITOR = "code";
       BROWSER = "firefox";
       NIXPKGS_ALLOW_UNFREE = "1";
     };
