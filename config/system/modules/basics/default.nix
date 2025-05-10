@@ -5,8 +5,9 @@ let
     git
     htop
     tmux
-    nixpkgs-fmt
-    tldr
+    nixpkgs-fmt # Nix language formatting
+    tldr # Improved man pages
+    swayimg # Image viewer
   ];
 in
 {
