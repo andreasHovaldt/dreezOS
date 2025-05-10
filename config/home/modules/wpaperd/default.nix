@@ -64,7 +64,8 @@ in
 
     # Add exec-once to hyprland config
     wayland.windowManager.hyprland.settings = lib.mkIf config.hyprland.enable {
-      exec-once = [ "wpaperd" ];
+      # exec-once = [ "wpaperd" ];
+      exec-once = [ "bash -c 'sleep 2 && wpaperd'" ]; # Sleep to ensure it is run after stylix
     };
 
     # Install dependencies
