@@ -11,7 +11,9 @@
     homeDirectory = "/home/dreezy";
     stateVersion = "24.11";
     sessionVariables = {
-      EDITOR = "nano";
+      TERMINAL = "wezterm";
+      EDITOR = "nvim";
+      BROWSER = "firefox";
       NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
@@ -63,14 +65,14 @@
 
   xdg.userDirs = {
     enable = true;
-    desktop = null;
+    desktop = "${config.home.homeDirectory}/Desktop";
     documents = "${config.home.homeDirectory}/Documents";
     download = "${config.home.homeDirectory}/Downloads";
-    music = null;
+    music = "${config.home.homeDirectory}/Music";
     pictures = "${config.home.homeDirectory}/Pictures";
-    publicShare = null;
-    templates = null;
-    videos = null;
+    publicShare = "${config.home.homeDirectory}/Public";
+    templates = "${config.home.homeDirectory}/Templates";
+    videos = "${config.home.homeDirectory}/Videos";
   };
 
   # Let Home Manager install and manage itself
