@@ -13,6 +13,7 @@
     ./modules/cachix
     ./modules/stylix-theme
     ./modules/thunar
+    ./modules/gaming
 
     ./modules/desktop-environment/hyprland
     ./modules/desktop-environment/display-manager/gdm

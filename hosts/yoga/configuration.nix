@@ -31,6 +31,7 @@
   nvidia.enable = true;
   thunar.enable = true;
   docker.enable = false;
+  gaming.enable = false;
   gnupg.enable = false;
   services.printing.enable = true;
   services.envfs.enable = false; # Should help resolve shebangs !/bin/bash

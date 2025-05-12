@@ -33,8 +33,8 @@
     kitty.enable = false;
     alacritty.enable = false;
   };
-  nvf.enable = true;
-  tmux.enable = true;
+  nvf.enable = false;
+  tmux.enable = false;
   git.enable = true;
   ssh.enable = true;
   direnv.enable = true;
@@ -61,6 +61,7 @@
     vscode
     evince
     spotify
+    ungoogled-chromium
   ];
 
   xdg = {
