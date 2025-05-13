@@ -63,7 +63,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.dreezy = import ./hosts/yoga/home.nix;
-              backupFileExtension = "backup"; #"hm-backup"; # Fixes problems where existing configs interfere with home-manager
+              backupFileExtension = "backup"; # Fixes problems where existing configs interfere with home-manager
               extraSpecialArgs = {inherit inputs unstablePkgs;};
             };
           }

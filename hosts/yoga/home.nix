@@ -24,6 +24,14 @@
     inputs.nvf.homeManagerModules.default
   ];
 
+  # Desktop environment
+  stylix-theme.enable = true; # Theming
+  hyprland.enable = true; # Window manager
+  hyprlock.enable = true; # Lock screen
+  wpaperd.enable = true; # Wallpaper manager
+  waybar.enable = true; # Status bar
+  swaync.enable = true; # Notification center
+
   # Home Manager modules
   shell.enable = true;
   terminal = {
@@ -39,14 +47,6 @@
   ssh.enable = true;
   direnv.enable = true;
 
-  # Desktop environment
-  stylix-theme.enable = true; # Theming
-  hyprland.enable = true; # Window manager
-  hyprlock.enable = true; # Lock screen
-  wpaperd.enable = true; # Wallpaper manager
-  waybar.enable = true; # Status bar
-  swaync.enable = true; # Notification center
-
   # Misc Home Manager packages
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -61,46 +61,42 @@
     vscode
     evince
     spotify
-    ungoogled-chromium
   ];
 
-  xdg = {
-    userDirs = {
-      enable = true;
-      desktop = "${config.home.homeDirectory}/Desktop";
-      documents = "${config.home.homeDirectory}/Documents";
-      download = "${config.home.homeDirectory}/Downloads";
-      music = "${config.home.homeDirectory}/Music";
-      pictures = "${config.home.homeDirectory}/Pictures";
-      publicShare = "${config.home.homeDirectory}/Public";
-      templates = "${config.home.homeDirectory}/Templates";
-      videos = "${config.home.homeDirectory}/Videos";
-    };
-    
-    
-    # Set default apps for mime types
-    # https://mimetype.io/all-types
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "text/plain" = "code.desktop";
-        "text/css" = "code.desktop";
-        "text/csv" = "code.desktop";
-        "text/javascript" = "code.desktop";
-        "text/markdown" = "code.desktop";
-        "text/x-c" = "code.desktop";
-        "text/x-fortran" = "code.desktop";
-        "text/x-java-source" = "code.desktop";
-        "text/x-pascal" = "code.desktop";
-        "text/x-python" = "code.desktop";
-        "text/html" = [ "firefox.desktop" "code.desktop"];
+  xdg.userDirs = {
+    enable = true;
+    desktop = "${config.home.homeDirectory}/Desktop";
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    publicShare = "${config.home.homeDirectory}/Public";
+    templates = "${config.home.homeDirectory}/Templates";
+    videos = "${config.home.homeDirectory}/Videos";
+  };
 
-        "application/x-sh" = "code.desktop";
-        "application/x-tex" = "code.desktop";
-        "application/yaml" = "code.desktop";
-        "application/json" = "code.desktop";
-        "application/xml" = "code.desktop";
-      };
+  # Set default apps for mime types
+  # https://mimetype.io/all-types
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/plain" = "code.desktop";
+      "text/css" = "code.desktop";
+      "text/csv" = "code.desktop";
+      "text/javascript" = "code.desktop";
+      "text/markdown" = "code.desktop";
+      "text/x-c" = "code.desktop";
+      "text/x-fortran" = "code.desktop";
+      "text/x-java-source" = "code.desktop";
+      "text/x-pascal" = "code.desktop";
+      "text/x-python" = "code.desktop";
+      "text/html" = [ "firefox.desktop" "code.desktop"];
+
+      "application/x-sh" = "code.desktop";
+      "application/x-tex" = "code.desktop";
+      "application/yaml" = "code.desktop";
+      "application/json" = "code.desktop";
+      "application/xml" = "code.desktop";
     };
   };
 
