@@ -47,9 +47,10 @@
 
   # Gaming
   gaming = {
-    enable = true;
+    proton.enable = true;
     steam.enable = true;
     minecraft.enable = false;
+    lutris.enable = false;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
