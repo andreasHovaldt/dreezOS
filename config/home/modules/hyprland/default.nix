@@ -54,7 +54,7 @@ in
         env = [
           "XCURSOR_SIZE,24"
           "HYPRCURSOR_SIZE,24"
-          "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2" # <-- TODO: Check if this is needed, might be an artifact from my old config
+          #"AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2" # <-- TODO: Check if this is needed, might be an artifact from my old config
         ];
 
       };

@@ -4,19 +4,48 @@ let
 in
 {
   options = {
-    nvidia.enable = lib.mkEnableOption "enable nvidia";
+    nvidia = {
+      enable = lib.mkEnableOption "enable nvidia module";
+      demos.enable = lib.mkEnableOption "enable collection of demos and test programs for OpenGL and Mesa";
+      
+      hybrid = {
+        enable = lib.mkEnableOption "enable hybrid mode for nvidia module";
+
+
+        # Use " lspci | grep -E 'VGA | 3D' " to find PCI ID's
+        amdgpuBusId = lib.mkOption {
+          type = lib.types.str;
+          default = "PCI:4:0:0";
+          description = "Bus ID of integrated AMD GPU for PRIME";
+        };
+
+        nvidiaBusId = lib.mkOption {
+          type = lib.types.str;
+          default = "PCI:1:0:0";
+          description = "Bus ID of NVIDIA GPU for PRIME";
+        };
+
+      };
+    };
   };
 
   config = lib.mkIf config.nvidia.enable {
 
-    # Load nvidia driver for Xorg and Wayland
-    #services.xserver.videoDrivers = [ "nvidia" ];
-    services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
-
-    environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # Enable OpenGL
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
+
+    # Load nvidia driver for Xorg and Wayland
+    services.xserver.videoDrivers = [ "amdgpu" "nvidia "]; # FIXME
+    #services.xserver.videoDrivers = [ "nvidia" ] ++ lib.optional config.nvidia.hybrid.enable "amdgpu";
+
+    # environment.sessionVariables = {
+    #   LIBVA_DRIVER_NAME = "nvidia";
+    #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # };
 
     # NVIDIA kernel modules at boot
     hardware.nvidia = {
@@ -50,12 +79,29 @@ in
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
-    # Ensure NVIDIA kernel modules are loaded
-    boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
+    # Integrated amd gpu and dedicated nvidia gpu
+    hardware.nvidia.prime = lib.mkIf config.nvidia.hybrid.enable {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      
+      # Integrated gpu
+      amdgpuBusId = config.nvidia.hybrid.amdgpuBusId;
 
+      # Dedicated gpu
+      nvidiaBusId = config.nvidia.hybrid.nvidiaBusId;
+    };
+
+    # Ensure NVIDIA kernel modules are loaded
+    #boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
+
+    # Blacklist nouveau package (unstable open-source nvidia drivers)
+    boot.blacklistedKernelModules = [ "nouveau" ];
 
     # Install dependencies
-    environment.systemPackages = dependencies;
+    environment.systemPackages = dependencies 
+    ++ (if (config.nvidia.demos.enable or false) then with pkgs; [ mesa-demos ] else [ ]);
 
   };
 }

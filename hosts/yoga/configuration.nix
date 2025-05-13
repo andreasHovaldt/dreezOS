@@ -28,15 +28,29 @@
   network.enable = true;
   pipewire.enable = true;
   bluetooth.enable = true;
-  nvidia.enable = true;
+  nvidia = {
+    enable = true;
+    demos.enable = true;
+    hybrid = {
+      enable = true;
+      amdgpuBusId = "PCI:4:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
   thunar.enable = true;
   docker.enable = false;
-  gaming.enable = false;
   gnupg.enable = false;
   services.printing.enable = true;
   services.envfs.enable = false; # Should help resolve shebangs !/bin/bash
   programs.firefox.enable = true;
   programs.direnv.enable = true;
+
+  # Gaming
+  gaming = {
+    enable = true;
+    steam.enable = true;
+    minecraft.enable = false;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dreezy = {

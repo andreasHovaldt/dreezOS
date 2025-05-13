@@ -2,6 +2,7 @@
 let
   cfg = config.gaming;
   dependencies = with pkgs; [ ] ++
+    lib.optionals cfg.steam.enable [ protonup-qt ] ++ # GUI for installing custom Proton versions like GE_Proton
     lib.optionals cfg.minecraft.enable [ prismlauncher ]; # https://wiki.nixos.org/wiki/Prism_Launcher
 in
 {
@@ -12,6 +13,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    # Assertion to ensure NVIDIA driver is enabled
+    assertions = [
+      {
+        assertion = config.nvidia.enable == true;
+        message = "The 'nvidia' video driver module must be enabled for gaming.";
+      }
+    ];
+    
     # Steam setup
     programs.steam = lib.mkIf cfg.steam.enable {
       enable = true;
