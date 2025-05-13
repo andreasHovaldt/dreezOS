@@ -38,14 +38,13 @@ in
       extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
 
-    # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = [ "amdgpu" "nvidia "]; # FIXME
-    #services.xserver.videoDrivers = [ "nvidia" ] ++ lib.optional config.nvidia.hybrid.enable "amdgpu";
+    # Set VA-API decode to use NVIDIA card
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+    };
 
-    # environment.sessionVariables = {
-    #   LIBVA_DRIVER_NAME = "nvidia";
-    #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # };
+    # Load nvidia driver for Xorg and Wayland
+    services.xserver.videoDrivers = [ "nvidia" ] ++ lib.optional config.nvidia.hybrid.enable "amdgpu";
 
     # NVIDIA kernel modules at boot
     hardware.nvidia = {
@@ -79,7 +78,9 @@ in
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
-    # Integrated amd gpu and dedicated nvidia gpu
+    # Hybrid mode: 
+    # - Use the amd iGPU for most stuff by default
+    # - Use 'nvidia-offload' for programs that should use the nvidia dGPU.
     hardware.nvidia.prime = lib.mkIf config.nvidia.hybrid.enable {
       offload = {
         enable = true;
@@ -93,10 +94,7 @@ in
       nvidiaBusId = config.nvidia.hybrid.nvidiaBusId;
     };
 
-    # Ensure NVIDIA kernel modules are loaded
-    #boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
-
-    # Blacklist nouveau package (unstable open-source nvidia drivers)
+    # Blacklist nouveau package (bad open-source nvidia drivers)
     boot.blacklistedKernelModules = [ "nouveau" ];
 
     # Install dependencies
