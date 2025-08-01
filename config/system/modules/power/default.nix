@@ -13,8 +13,8 @@ in
       enable = true;
       percentageLow = 30;
       percentageCritical = 10;
-      percentageAction = 5;
-      criticalPowerAction = "Hibernate";
+      percentageAction = 3;
+      criticalPowerAction = "PowerOff"; # "PowerOff", "Hibernate", "HybridSleep", "Suspend", "Ignore"
     };
 
     # Whether to enable power-profiles-daemon, a DBus daemon that allows 
