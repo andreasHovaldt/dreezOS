@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, lib, ... }: 
+
+let
+  hm = config.home-manager.users.myuser;
+in
+{
 
   networking.hostName = "yoga";
 
@@ -59,6 +64,30 @@
     description = "Andreas Højrup";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+  };
+
+  # For waybar-tlp powermode script
+  security.sudo = lib.mkIf config.power.enable {
+    enable = true;  # ensures sudo is installed and configured
+    extraRules = [
+      {
+        users = [ "dreezy" ];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/tlp bat";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/tlp ac";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/tlp start";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   # Swap

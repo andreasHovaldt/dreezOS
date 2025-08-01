@@ -28,6 +28,14 @@ in
       style = lib.mkAfter (builtins.readFile ./src/style.css);
     };
 
+    # Add custom waybar scripts 
+    home.file = {
+      ".config/waybar/scripts/tlp.sh" = {
+        source = ./scripts/tlp.sh;
+        executable = true;
+      };
+    };
+
     # Enable Waybar for Hyprland
     wayland.windowManager.hyprland.settings = lib.mkIf config.hyprland.enable {
       exec-once = [ "waybar" ];
