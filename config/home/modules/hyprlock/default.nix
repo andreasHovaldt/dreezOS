@@ -27,7 +27,7 @@ in
 
       settings = with config.lib.stylix.colors; {
         general = {
-          grace = 0;
+          #grace = 0; # Was removed in v0.9.0
           hide_cursor = true;
           fail_timeout = 1000;
         };
