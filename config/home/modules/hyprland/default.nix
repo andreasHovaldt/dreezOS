@@ -57,6 +57,14 @@ in
           #"AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2" # <-- TODO: Check if this is needed, might be an artifact from my old config
         ];
 
+        #####################
+        ### MISC SETTINGS ###
+        #####################
+
+        misc = {
+          focus_on_activate = true; # Focus windows when they are activated
+        };
+
       };
 
     };
